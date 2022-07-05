@@ -1,12 +1,50 @@
-@import 'libs/_bootstrap-reboot.min'
-    
-$blue: #3bbfce
-$margin: 16px
+@import 'libs/_bootstrap-reboot.min.css'
+@import 'libs/_bootstrap-grid.min.css'
 
-.border
-  padding: calc($margin / 2)
-  margin: calc($margin / 2)
-  border: 4mm ridge
-  border-color: $blue
-  text-align: center
-  width: 200px
+$color_navbar: #e0dfdd
+
+header
+  height: 12vh
+  width : 100%
+  nav
+    background: $color_navbar
+    height    : 100%
+    div.navbar
+      height: 100%
+      .row
+        height: 100%
+    div.navbutton
+      height         : 100%
+      display        : flex
+      justify-content: center
+      align-items    : center
+      text-align     : center
+
+button.navbutton
+  display   : block
+  width     : 100%
+  height    : 100%
+  background: rgb(0, 0, 0, 0)
+  border    : 0
+
+div.main.container-flex
+  display: flex
+  width: 100%
+  height: 88vh
+  div.main
+    width: 50%
+    height: 100%
+  div.row
+    height: 100%
+    button.email_text
+      font-size: 28px
+      border: 0
+      background: rgb(0, 0, 0, 0)
+
+div.carousel_starter
+  margin-top: 10px
+  margin-bottom: 10px
+  height: calc(88vh - 20px)
+  background: $color_navbar
+
+
