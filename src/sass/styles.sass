@@ -1,5 +1,6 @@
 @import 'libs/_bootstrap-reboot.min.css'
 @import 'libs/_bootstrap-grid.min.css'
+@import 'libs/_fancy-buttons.css'
 
 $color_navbar: #e0dfdd
 
@@ -36,15 +37,21 @@ div.main.container-flex
     height: 100%
   div.row
     height: 100%
-    button.email_text
+    div
+      display: flex
+      justify-content: center
+    button#email_text
       font-size: 28px
       border: 0
       background: rgb(0, 0, 0, 0)
+    button#email_text:active
+      transition: all .1s
+      opacity: 0.8
+      transform: translateY(1px)
 
 div.carousel_starter
   margin-top: 10px
   margin-bottom: 10px
   height: calc(88vh - 20px)
   background: $color_navbar
-
 

@@ -31,5 +31,9 @@
     "gulp-sass": "^5.1.0",
     "gulp-svgo": "^2.2.1",
     "sass": "^1.53.0"
+  },
+  "dependencies": {
+    "events": "^3.3.0",
+    "gsap": "^3.10.4"
   }
 }

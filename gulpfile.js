@@ -20,6 +20,7 @@ gulp.task('server', function() {
     });
 
     gulp.watch("src/*.html").on('change', browserSync.reload);
+    gulp.watch("src/js/**/*.js").on('change', browserSync.reload);
 });
 
 gulp.task('styles', function() {
@@ -50,6 +51,7 @@ gulp.task('watch', function() {
     gulp.watch("src/*.html").on('change', gulp.parallel('html'));
     gulp.watch("src/img/**/*").on('change', gulp.parallel('images'));
     gulp.watch("src/svg/**/*").on('change', gulp.parallel('svg'));
+    gulp.watch("src/js/**/*.js").on('change', gulp.parallel('js'));
 });
 
 gulp.task('html', function() {

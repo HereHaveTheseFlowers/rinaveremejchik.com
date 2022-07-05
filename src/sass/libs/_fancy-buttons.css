@@ -1,0 +1,19 @@
+
+  
+div#copied {
+    content:"";
+    position: absolute;
+    height: 10vh;
+    width: 10vh;
+    border-radius: 50%;
+    background: radial-gradient(red 10px, yellow 30%, rgb(0,0,0,0) 50%);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@keyframes anim1 {
+    0%{transform: scale(0.5);opacity: 0.6;}
+    50%{transform: scale(1.4); opacity: 1;}
+    100%{transform: scale(1.7);opacity: 0;}
+}
