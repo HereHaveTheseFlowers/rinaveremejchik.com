@@ -25,7 +25,6 @@ gulp.task('server', function() {
 
 gulp.task('styles', function() {
     return gulp.src("src/sass/*.+(scss|sass)")
-        .pipe(cache('sass'))
         .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
         .pipe(autoprefixer({
             overrideBrowserslist: ['last 8 versions'],
@@ -47,7 +46,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('watch', function() {
-    gulp.watch("src/sass/*.+(scss|sass|css)", gulp.parallel("styles"))
+    gulp.watch("src/sass/**/*.+(scss|sass|css)", gulp.parallel("styles"))
     gulp.watch("src/*.html").on('change', gulp.parallel('html'));
     gulp.watch("src/img/**/*").on('change', gulp.parallel('images'));
     gulp.watch("src/svg/**/*").on('change', gulp.parallel('svg'));
