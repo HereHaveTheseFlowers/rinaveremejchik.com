@@ -1,0 +1,24 @@
+
+.slide-in
+  animation: scrollUp 1s 0s forwards
+  backface-visibility: visible !important
+  display            : block
+.slide-in-container
+  height: 130px
+  overflow: hidden
+  position: relative
+.slide-in-container::after
+  left: 0
+  bottom: 0
+  z-index: 1
+  width: 100%
+  content: ''
+  height: 45px
+  position: absolute
+  background: $color_bg
+
+@keyframes scrollUp
+  from
+    transform: translateY(300%)
+  to
+    transform: translateY(0)

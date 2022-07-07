@@ -1,51 +1,88 @@
+
 #cursor-follower
-    position: absolute
-    background-color: $color_copy
-    width: 40px
-    height: 40px
-    opacity: 0
-    border-radius: 100%
-    z-index: 80
-    transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform, 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) opacity
-    user-select: none
-    pointer-events: none
-    transform: translate(4px, 4px)
+    position       : absolute
+    display        : flex
+    justify-content: center
+    align-items    : center
+    width          : 40px
+    height         : 40px
+    z-index        : 80
+    user-select    : none
+    pointer-events : none
     @media screen and (max-width : 480px)
         display: none
 
-#cursor-follower::before
-    z-index: 80
-    content: ""
-    width: 100%
-    height: 100%
-    position: absolute
-    top: 0
-    left: 0
-    display: block
-    border-radius: 100%
+#cursor-shape
+    background-color: $color_cursor
+    width           : 33%
+    height          : 33%
+    border-radius   : 100%
+    //opacity         : 0
+    transition      : 0.3s cubic-bezier(0.75, 0.5, 0.3, 2.33) transform, 0.3s cubic-bezier(0.75, 0.5, 1, 2.33) opacity
 
-#cursor-follower.active
-    background-color: $color_copy
-    opacity: 0.6
-    transform: scale(3)
-    mix-blend-mode: normal
+#cursor-shape.show_hint
+    opacity  : 0.6
+    transform: scale(9)
 
 #cursor-text
+    position      : absolute
+    opacity       : 0
+    width         : 100%
+    color         : white
+    font-size     : 10px
+    font-weight   : 500
+    text-align    : center
+    transition    : 0.3s cubic-bezier(0.75, 0.5, 0.3, 2.33) transform, 0.3s cubic-bezier(0.75, 0.5, 0.3, 2.33) opacity
+
+#cursor-text.show_hint
+    opacity       : 1
+    transform     : scale(2)
+
+button#email_text
+    font-size: 28px
+    border: 0
+    user-select: none
+    background: rgb(0, 0, 0, 0)
+    transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform
+
+div#copied
+    content:""
+    font-size: 12px
+    font-weight: 500
+    color: white
     position: absolute
+    z-index        : 90
+    height: 15vh
+    width: 15vh
+    border-radius: 50%
+    background: radial-gradient($color_copied 15%, rgb(0,0,0,0) 60%)
+    animation: 2.5s cubic-bezier(.7, 1, .30, 1) anim1 both
+    opacity: 0
+    display: flex
+    justify-content: center
+    align-items: center
+
+span#copied
     pointer-events: none
     user-select: none
-    z-index: 80
-    opacity: 0
-    color: white
-    font-size: 8px
-    font-weight: 500
-    width: 60px
-    height: 20px
-    transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform, 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) opacity
-    @media screen and (max-width : 480px)
-        display: none
-
-#cursor-text.active
     opacity: 1
-    transform: scale(2)
-    mix-blend-mode: normal
+
+// old anim
+@keyframes anim1
+    0%
+        transform: scale(0.5)
+        opacity: 0.6
+    50%
+        transform: scale(1.4)
+        opacity: 1
+    100%
+        transform: scale(1.7)
+        opacity: 0
+
+@keyframes anim2
+    0%
+        transform: scale(1)
+    50%
+        transform: scale(1.4)
+    100%
+        transform: scale(1)
