@@ -16,9 +16,9 @@
         <nav class="navbar">
             <div class="container-md container-lg container-lg navbar">
                 <div class="row">
-                    <div class = "col-md-3 navsection"><span class="navtext hover-underline-animation">Rina Veremejchik</span></div>
-                    <div class = "col-md-3 navsection"><span class="navtext hover-underline-animation">Retoucher</span></div>
-                    <div class = "col-md-3 navsection"><span class="navtext hover-underline-animation">Based in Tbilisi</span></div>
+                    <div class = "col-md-3 navsection"><span class="navtext">Rina Veremejchik</span></div>
+                    <div class = "col-md-3 navsection"><span class="navtext">Retoucher</span></div>
+                    <div class = "col-md-3 navsection"><span class="navtext">Based in Tbilisi</span></div>
                     <div class = "col-md-3 navsection">
                         <button class = "navbutton"><a href = ""><span class="navtext hover-underline-animation">Info</span></a></button>
                     </div>
@@ -27,22 +27,49 @@
         </nav>
     </header>
     <main>
-        <section class="home">
-            <div class="container-flex">
-                <div class="home carousel_starter">
-                    <div class="starter_container">
-                        <!-- carousel here -->
+        <section class="slider">
+            <div class="slide">
+                <div class="home carousel-section">
+                    <div class="picture2-container container">
+                        <div class="row align-items-center">
+                            <div class="col-md-8 offset-md-2">
+                                <img src="./img/1.jpg" alt="retouched insanely good" class="sliderimage 4-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="home carousel-section">
+                    <div class="picture1-container container">
+                        <div class="row align-items-center">
+                            <div class="col-md-8 offset-md-2">
+                                <img src="./img/2.jpg" alt="retouched insanely good" class="sliderimage 4-5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="home carousel-section">
+                    <div class="default-picture-container container">
+                        <div class="row align-items-center">
+                            <div class="col-md-8 offset-md-2">
+                                <img src="./img/1.jpg" alt="Photographer: Hayley Peace" class="sliderimage 4-5 " draggable="false" (dragstart)="false;">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="home container">
                     <div class="row align-items-center">
                         <div class="magnetic13 col-md-8 offset-md-2">
-                            <button class="cursor-hover slide-in-container" id="email_text"><span class="slide-in">rinaveremejchik@gmail.com</span></button>
+                            <button class="slide-in-container" id="email_button"><span class="cursor-hover slide-in">rinaveremejchik@gmail.com</span></button>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- Control buttons -->
+       <button class="slider-prev"></button>
+       <button class="slider-next"></button>
     </main>
     
     <div id="cursor-follower">
@@ -52,9 +79,10 @@
         </div>
     </div>
     <script src="./js/jquery-3.6.0.min.js"></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js" integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
     <script src="./js/smoothscroll.min.js"></script>
+    <script src="./js/slider.min.js"></script>
     <script src="./js/magnetic.min.js"></script>
     <script src="./js/index.min.js"></script>
 </body>

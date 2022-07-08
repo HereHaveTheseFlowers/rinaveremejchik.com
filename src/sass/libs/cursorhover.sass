@@ -1,6 +1,8 @@
 
 #cursor-follower
-    position       : absolute
+    top: 0
+    left: 0
+    position: fixed
     display        : flex
     justify-content: center
     align-items    : center
@@ -38,14 +40,14 @@
     opacity       : 1
     transform     : scale(2)
 
-button#email_text
+button#email_button
     font-size: 28px
     border: 0
     user-select: none
     background: rgb(0, 0, 0, 0)
     transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform
 
-div#copied
+div#copied_hint
     content:""
     font-size: 12px
     font-weight: 500
@@ -62,7 +64,7 @@ div#copied
     justify-content: center
     align-items: center
 
-span#copied
+span#copied_hint
     pointer-events: none
     user-select: none
     opacity: 1

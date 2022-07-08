@@ -23,11 +23,11 @@ function magnetize(el, e, magnetOffset){
     let distance = calculateDistance(item, mX, mY);
         
     if(distance < customDist + 70){
-        TweenMax.to(item, 0.7, {y: deltaY, x: deltaX, scale:1.09});
+        gsap.to(item, 0.9, {y: deltaY*1.3, x: deltaX});
         item.addClass('magnet');
     }
     else {
-        TweenMax.to(item, 0.7, {y: 0, x: 0, scale:1});
+        gsap.to(item, 0.9, {y: 0, x: 0});
         item.removeClass('magnet');
     }
 
@@ -36,3 +36,4 @@ function magnetize(el, e, magnetOffset){
 function calculateDistance(elem, mouseX, mouseY) {
     return Math.floor(Math.sqrt(Math.pow(mouseX - (elem.offset().left+(elem.width()/2)), 2) + Math.pow(mouseY - (elem.offset().top+(elem.height()/2)), 2)));
 }
+
