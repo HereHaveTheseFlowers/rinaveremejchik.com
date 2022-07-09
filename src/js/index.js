@@ -24,8 +24,8 @@ email_button.click(function(){
 	circle.style.left = `calc(${currentMousePos.x}px - 7.5vh)`
 	document.body.appendChild(circle);
 	dont_show_hint = true;
-	cursorshape.removeClass(" show_hint");
-	cursortext.removeClass(" show_hint");
+	cursorshape.removeClass(" show_hint_copy");
+	cursortext.removeClass(" show_hint_copy");
 	setTimeout(() =>  {
 		circle.remove();
 	}, 1700);
@@ -37,6 +37,7 @@ email_button.click(function(){
 let follower = $("#cursor-follower");
 let cursorshape = $("#cursor-shape");
 let cursortext = $("#cursor-text");
+let cursorzoom = $("#cursor-zoom");
 
 /* old cursor movement
 var posX = 0,
@@ -61,22 +62,90 @@ let xTo = gsap.quickTo(follower, "x", {duration: 0.1, ease: "power3"}),
     yTo = gsap.quickTo(follower, "y", {duration: 0.1, ease: "power3"});
 
 window.addEventListener("mousemove", e => {
+	follower.css('opacity', '1');
 	xTo(e.clientX);
 	yTo(e.clientY);
 });
 
 $(".cursor-hover").on("mouseenter", function() {
 	if(dont_show_hint) return;
-	cursorshape.addClass(" show_hint");
-	cursortext.addClass(" show_hint");
-	document.body.style.cursor = 'none';
+	cursorshape.addClass(" show_hint_copy");
+	cursortext.addClass(" show_hint_copy");
 });
 
 $(".cursor-hover").on("mouseleave", function() {
-	cursorshape.removeClass(" show_hint");
-	cursortext.removeClass(" show_hint");
-	document.body.style.cursor = 'auto';
+	cursorshape.removeClass(" show_hint_copy");
+	cursortext.removeClass(" show_hint_copy");
 });
+
+$(".sliderimage").on("mouseenter", function() {
+	cursorshape.addClass(" show_hint_zoom");
+	cursorzoom.addClass(" show_hint_zoom");
+});
+
+$(".sliderimage").on("mouseleave", function() {
+	cursorshape.removeClass(" show_hint_zoom");
+	cursorzoom.removeClass(" show_hint_zoom");
+});
+
+// check for svg support
+
+if (!Modernizr.inlinesvg) {
+	$("#zoom-svg").css('display', 'none');
+	$("#zoom-svg-fallback").css('display', 'block');
+	$("#zoom-svg-fallback").attr("src", './img/zoom.png');
+}
+
+//image zoom
+
+let zoom = 1;
+const zoomingSpeed = 0.04;
+const image_zoom = $("img.image-zoomed");
+const div_zoom = $("div.image-zoomed");
+let canclose = false;
+$(".sliderimage").on('click', function () { 
+	zoom = 1;
+	image_zoom.css('transform', `scale(${zoom})`);
+	if(div_zoom.css('display') === 'flex') return;
+	image_zoom.attr('src', this.src);
+	image_zoom.attr('alt', this.alt);
+	div_zoom.css('display', 'flex');
+	div_zoom.removeClass('is-hidden');
+	div_zoom.addClass('is-visible');
+	$("main").css('filter', 'blur(10px)');
+	$("header").css('filter', 'blur(8px)');
+	$(image_zoom).hover(
+		function() { $.data(this, 'hover', true); },
+		function() { $.data(this, 'hover', false); }
+	).data('hover', false);
+	canclose = false;
+	setTimeout(() =>  {
+		canclose = true;
+	}, 800);
+});
+$('html').on('click', function () { 
+	if(canclose && !$(image_zoom).data('hover')) {
+		div_zoom.addClass('is-hidden');
+		$("main").css('filter', 'none');
+		$("header").css('filter', 'none');
+		setTimeout(() =>  {
+			div_zoom.css('display', 'none');
+			image_zoom.attr('src', '');
+		}, 500);
+	}
+});
+document.addEventListener("wheel", (e)=> {
+	if(div_zoom.css('display') === 'flex' && zoom >= 1 && zoom <= 1.5) {
+		if(e.deltaY > 0 && zoom >= 1 + zoomingSpeed) {
+			zoom -= zoomingSpeed;
+			image_zoom.css('transform', `scale(${(zoom)})`);
+		}
+		else if(e.deltaY <= 0 && zoom <= 1.5 - zoomingSpeed) {
+			zoom += zoomingSpeed;
+			image_zoom.css('transform', `scale(${(zoom)})`);
+		}
+	}
+})
 
 // Context menu rewrite
 

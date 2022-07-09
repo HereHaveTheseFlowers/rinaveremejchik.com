@@ -5,7 +5,8 @@
 @import 'libs/hover-underlining.sass'
 @import 'libs/scroll.css'
 @import 'libs/heading-animation.sass'
-@import 'libs/imagenotice.sass'
+@import 'libs/image-notice.sass'
+@import 'libs/image-zoomed.sass'
 
 *
   cursor: none !important
@@ -13,6 +14,10 @@
     background: $color_none
 body
   background: $color_bg
+h1
+  margin-bottom: 0
+h2
+  margin-bottom: 0
 span::selection
     background: $color_selection
 div::selection
@@ -36,6 +41,7 @@ header
     span.navtext
       color          : $color_text
       font-weight    : 600
+      font-size      : 18px
   button.navbutton
     display   : block
     width     : 100%

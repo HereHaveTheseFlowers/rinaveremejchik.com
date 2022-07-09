@@ -1,0 +1,48 @@
+
+div.image-zoomed
+    position: fixed
+    display: none
+    top: 0
+    left: 0
+    justify-content: center
+    align-items    : center
+    height: 100%
+    width: 100%
+    opacity: 0
+    img.image-zoomed
+        height: 100%
+        object-fit: cover
+        user-drag: none
+        user-select: none
+        overflow: visible
+
+div.image-zoomed.is-visible
+    animation: fadeInFromNone 0.5s ease-in-out
+    animation-fill-mode: forwards
+    opacity: 1
+    display: flex
+
+div.image-zoomed.is-hidden
+    animation: fadeOutFromBlock 0.5s ease-in-out
+
+main
+    transition: filter 0.8s
+header
+    transition: filter 0.8s
+
+@keyframes fadeInFromNone
+    0%
+        opacity: 0
+    100%
+        opacity: 1
+
+@keyframes fadeOutFromBlock
+    0%
+        display: flex
+        opacity: 1
+    100%
+        display: flex
+        opacity: 0
+    100%
+        display: none
+        opacity: 0
