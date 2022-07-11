@@ -84,7 +84,7 @@ section.slider
     padding-bottom: 10px
     .container
       height: 100%
-    div.default-picture-container
+    div.picture0-container
       background    : $color_carousel_starter
     div.picture1-container
       background    : $color_none
@@ -98,12 +98,58 @@ img.sliderimage
   user-drag: none
   user-select: none
 
-.slider-next
-  height: 200px
-  width: 200px
+div.slider-button
+  position: absolute
+  user-drag: none
+  user-select: none
+  height: 100%
+  width: 9%
+  display: flex
+  align-items: center
+  justify-content: center
+  div#buttontext
+    position: absolute
+    display: flex
+    align-items: center
+    justify-content: center
+    opacity: 0.2
+    height: 50px
+    width: 50px
+    margin-left: 40%
+    transition: 0.5s all
+    color: black
+    text-align: center
+    font-size: 15px
+    font-weight: 700
+  svg
+    display: block
+    opacity: 0.1
+    transition: 1s opacity, 0.5s transform
+    fill: black
+  svg.slider-prev
+    transform: scale(0.6) translateX(-30px)
+    opacity: 0
+  svg.slider-next
+    transform: scale(-1,1)
+    opacity: 0
+  svg.slider-next.active
+    opacity: 0.1
+  svg.slider-prev.active
+    opacity: 0.1
+  
 
-.slider-prev
-  height: 200px
-  width: 200px
+div.slider-prev
+  left: 0
+div.slider-next
+  right: 0
 
+.defs-only
+  display: none
 
+.blur-up
+  -webkit-filter: blur(5px)
+  filter: blur(5px)
+  transition: filter 1000ms, -webkit-filter 1000ms
+.blur-up.lazyloaded
+  -webkit-filter: blur(0)
+  filter: blur(0)

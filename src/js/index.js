@@ -67,6 +67,37 @@ window.addEventListener("mousemove", e => {
 	yTo(e.clientY);
 });
 
+$("svg.slider-prev").on("mouseenter", function() {
+	cursorshape.addClass(" show_hint_button");
+	cursortext.addClass(" show_hint_button");
+});
+
+$("svg.slider-prev").on("mouseleave", function() {
+	cursorshape.removeClass(" show_hint_button");
+	cursortext.removeClass(" show_hint_button");
+});
+
+$("svg.slider-next").on("mouseenter", function() {
+	cursorshape.addClass(" show_hint_button");
+	cursortext.addClass(" show_hint_button");
+});
+
+$("svg.slider-next").on("mouseleave", function() {
+	cursorshape.removeClass(" show_hint_button");
+	cursortext.removeClass(" show_hint_button");
+});
+
+$("#buttontext").on("mouseenter", function() {
+	cursorshape.addClass(" show_hint_button");
+	cursortext.addClass(" show_hint_button");
+});
+
+$("#buttontext").on("mouseleave", function() {
+	cursorshape.removeClass(" show_hint_button");
+	cursortext.removeClass(" show_hint_button");
+});
+
+
 $(".cursor-hover").on("mouseenter", function() {
 	if(dont_show_hint) return;
 	cursorshape.addClass(" show_hint_copy");
@@ -102,8 +133,12 @@ let zoom = 1;
 const zoomingSpeed = 0.04;
 const image_zoom = $("img.image-zoomed");
 const div_zoom = $("div.image-zoomed");
+let canopen = true;
+const open_time = 800;
 let canclose = false;
+const close_time = 500;
 $(".sliderimage").on('click', function () { 
+	if(!canopen) return;
 	zoom = 1;
 	image_zoom.css('transform', `scale(${zoom})`);
 	if(div_zoom.css('display') === 'flex') return;
@@ -118,10 +153,14 @@ $(".sliderimage").on('click', function () {
 		function() { $.data(this, 'hover', true); },
 		function() { $.data(this, 'hover', false); }
 	).data('hover', false);
+	canopen = false;
 	canclose = false;
 	setTimeout(() =>  {
+		canopen = true;
+	}, open_time);
+	setTimeout(() =>  {
 		canclose = true;
-	}, 800);
+	}, close_time);
 });
 $('html').on('click', function () { 
 	if(canclose && !$(image_zoom).data('hover')) {
@@ -129,7 +168,11 @@ $('html').on('click', function () {
 		$("main").css('filter', 'none');
 		$("header").css('filter', 'none');
 		setTimeout(() =>  {
+			$("main").css('filter', 'none');
+			$("header").css('filter', 'none');
 			div_zoom.css('display', 'none');
+			div_zoom.addClass('is-hidden');
+			div_zoom.removeClass('is-visible');
 			image_zoom.attr('src', '');
 		}, 500);
 	}

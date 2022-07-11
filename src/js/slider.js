@@ -21,19 +21,34 @@ slidesreversed.forEach((slide, indx) => {
 // 0, -100, -200, etc.
 // so the slides list looks like: -200, -100, 0
 // select next slide button
-const nextSlide = document.querySelector(".slider-next");
+const nextSlide = $("div.slider-next");
+const nextSlidesvg = $("svg.slider-next");
+// select prev slide button
+const prevSlide = $("div.slider-prev");
+const prevSlidesvg = $("svg.slider-prev");
+
+// how much smaller the buttons become when you click on em
+const svgTransform = 0.6
 
 // current slide counter
 let curSlide = slides.length * 2 - 1;
 
 // add event listener and navigation functionality
-nextSlide.addEventListener("click", function () {
+nextSlide.on("click", function () {
     // check if current slide is the last and reset current slide
     if (curSlide === slides.length * 2 - 1) {
     return;
     } else {
     curSlide++;
     }
+    if(curSlide === slides.length * 2 - 1) {
+        nextSlidesvg.removeClass('active');
+    }
+    prevSlidesvg.addClass('active');
+	nextSlidesvg.css('transform', `scale(${-svgTransform}, ${svgTransform})`)
+	setTimeout(() =>  {
+		nextSlidesvg.css('transform', 'scale(-1, 1)')
+	}, 200);
     //   move slide by 50%
     //-50% <= 50 * -1 <= indx 0 - (curSlide 3 - 2 = 1)= -1
     //50% <= 50 * 1 <= indx 1 - (curSlide 3 - 2 = 1) = 2
@@ -43,18 +58,26 @@ nextSlide.addEventListener("click", function () {
     });
 });
 
-// select prev slide button
-const prevSlide = document.querySelector(".slider-prev");
 
 // add event listener and navigation functionality
-prevSlide.addEventListener("click", function () {
+prevSlide.on("click", function () {
     // check if current slide is the first and reset current slide to last
     if (curSlide === 1) {
     return;
     } else {
     curSlide--;
     }
-
+    if(curSlide === 1) prevSlidesvg.removeClass('active');
+    $('#buttontext').css('opacity', '0');
+    $('#buttontext').css('transform', 'scale(0.5)');
+    nextSlidesvg.addClass('active');
+	prevSlidesvg.css('transform', `scale(${svgTransform})`)
+	setTimeout(() =>  {
+        $('#buttontext').css('display', 'none');
+	}, 500);
+	setTimeout(() =>  {
+		prevSlidesvg.css('transform', 'scale(1)')
+	}, 200);
     //   move every slide by -100%
     slides.forEach((slide, indx) => {
         slidesposition[indx] = slidesposition[indx] + 50

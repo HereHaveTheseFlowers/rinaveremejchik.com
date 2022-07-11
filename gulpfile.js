@@ -103,4 +103,4 @@ gulp.task('svg', function() {
 });
 
 
-gulp.task('default', gulp.parallel('watch', 'server', 'styles', 'html', 'js', 'fonts', 'icons', 'clean_images', 'images', 'clean_svgs', 'svg'));
+gulp.task('default', gulp.parallel('watch', 'server', 'styles', 'html', 'js', 'fonts', 'icons', 'images', 'clean_svgs', 'svg'));
