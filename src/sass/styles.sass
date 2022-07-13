@@ -7,6 +7,7 @@
 @import 'libs/heading-animation.sass'
 @import 'libs/image-notice.sass'
 @import 'libs/image-zoomed.sass'
+@import 'libs/instagram-link.sass'
 
 *
   cursor: none !important
@@ -38,6 +39,12 @@ header
       justify-content: center
       align-items    : center
       text-align     : center
+      h1
+        display: flex
+        align-content: center
+      h2
+        display: flex
+        align-content: center
     span.navtext
       color          : $color_text
       font-weight    : 600
@@ -49,6 +56,16 @@ header
     background: rgb(0, 0, 0, 0)
     border    : 0
 
+a.link-instagram
+  margin-left: 1vw
+  width: 2em
+  height: 2em
+  img
+    user-select: none
+    user-drag: none
+    width: 100%
+    height: 100%
+    transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform
 a:link
   color: $color_text
 a:active
@@ -99,6 +116,7 @@ img.sliderimage
   user-select: none
 
 div.slider-button
+  pointer-events: none
   position: absolute
   user-drag: none
   user-select: none
@@ -122,6 +140,7 @@ div.slider-button
     font-size: 15px
     font-weight: 700
   svg
+    pointer-events: all
     display: block
     opacity: 0.1
     transition: 1s opacity, 0.5s transform
@@ -130,9 +149,11 @@ div.slider-button
     transform: scale(0.6) translateX(-30px)
     opacity: 0
   svg.slider-next
+    pointer-events: none
     transform: scale(-1,1)
     opacity: 0
   svg.slider-next.active
+    pointer-events: all
     opacity: 0.1
   svg.slider-prev.active
     opacity: 0.1
@@ -149,7 +170,10 @@ div.slider-next
 .blur-up
   -webkit-filter: blur(5px)
   filter: blur(5px)
-  transition: filter 1000ms, -webkit-filter 1000ms
+  transition: filter 1500ms, -webkit-filter 1500ms
 .blur-up.lazyloaded
   -webkit-filter: blur(0)
   filter: blur(0)
+
+
+  

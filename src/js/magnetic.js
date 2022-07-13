@@ -13,7 +13,7 @@ function magnetize(el, e, magnetOffset){
         mY = e.pageY;
     const item = $(el);
 
-    const customDist = item.data('dist') * 20|| 120;
+    const customDist = item.data('dist') * 20 || 250;
     const centerX = item.offset().left + (item.width()/2);
     const centerY = item.offset().top + (item.height()/2);
 
@@ -34,6 +34,6 @@ function magnetize(el, e, magnetOffset){
 }
 
 function calculateDistance(elem, mouseX, mouseY) {
-    return Math.floor(Math.sqrt(Math.pow(mouseX - (elem.offset().left+(elem.width()/2)), 2) + Math.pow(mouseY - (elem.offset().top+(elem.height()/2)), 2)));
+    return Math.floor(Math.sqrt(Math.pow(mouseX - (elem.offset().left+(elem.width()/2)), 2) + (Math.pow(mouseY - (elem.offset().top+(elem.height()/2)), 2)*2)));
 }
 

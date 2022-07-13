@@ -9,11 +9,14 @@ div.image-zoomed
     height: 100%
     width: 100%
     opacity: 0
+    div#div-zoomed
+        height: 100%
     img.image-zoomed
         height: 100%
         object-fit: cover
         user-drag: none
         user-select: none
+        //transition: 0.2s transform
 
 div.image-zoomed.is-visible
     animation: fadeInFromNone 0.5s ease-in-out

@@ -4,21 +4,19 @@
   backface-visibility: visible !important
   display            : block
 .slide-in-container
-  height: 130px
   overflow: hidden
   position: relative
 .slide-in-container::after
-  left: 0
   bottom: 0
   z-index: 1
-  width: 100%
+  width: 70%
   content: ''
-  height: 45px
+  height: 30%
   position: absolute
   background: $color_bg
 
 @keyframes scrollUp
   from
-    transform: translateY(300%)
+    transform: translateY(200%)
   to
     transform: translateY(0)

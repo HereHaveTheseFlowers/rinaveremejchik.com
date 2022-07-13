@@ -33,13 +33,11 @@ const svgTransform = 0.6
 // current slide counter
 let curSlide = slides.length * 2 - 1;
 
-// add event listener and navigation functionality
-nextSlide.on("click", function () {
-    // check if current slide is the last and reset current slide
+function goToNextSlide() {
     if (curSlide === slides.length * 2 - 1) {
-    return;
+        return;
     } else {
-    curSlide++;
+        curSlide++;
     }
     if(curSlide === slides.length * 2 - 1) {
         nextSlidesvg.removeClass('active');
@@ -56,16 +54,13 @@ nextSlide.on("click", function () {
         slidesposition[indx] = slidesposition[indx] - 50
         slide.style.transform = `translateX(${slidesposition[indx]}%)`;
     });
-});
+}
 
-
-// add event listener and navigation functionality
-prevSlide.on("click", function () {
-    // check if current slide is the first and reset current slide to last
+function goToPrevSlide() {
     if (curSlide === 1) {
-    return;
+        return;
     } else {
-    curSlide--;
+        curSlide--;
     }
     if(curSlide === 1) prevSlidesvg.removeClass('active');
     $('#buttontext').css('opacity', '0');
@@ -83,4 +78,18 @@ prevSlide.on("click", function () {
         slidesposition[indx] = slidesposition[indx] + 50
         slide.style.transform = `translateX(${slidesposition[indx]}%)`;
     });
+}
+// add event listener and navigation functionality
+nextSlide.on("click", function () {
+    goToNextSlide();
 });
+
+prevSlide.on("click", function () {
+    goToPrevSlide();
+});
+
+$( "body" ).keydown(function(e) {
+    if(e.which === 39) goToNextSlide();
+    else if(e.which === 37) goToPrevSlide();
+});
+    
