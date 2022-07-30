@@ -3,7 +3,10 @@ a.link-instagram
     cursor: pointer
     display: block
     position: relative
+    img.link-instagram
+        width: 100%
     span.shape
+        z-index: 10000 !important
         height: 100%
         width: 100%
         position: absolute
@@ -18,7 +21,7 @@ a.link-instagram
             width: 1.8px
             background: $color_cursor
             opacity: 0
-            z-index: 10000
+            z-index: 10000 !important
         span:nth-of-type(1) 
             top: -5px
             left: 0

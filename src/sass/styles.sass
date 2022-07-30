@@ -1,6 +1,7 @@
 @import 'libs/vars.sass'
 @import 'libs/bootstrap-reboot.min.css'
 @import 'libs/bootstrap-grid.min.css'
+@import 'libs/fonts.css'
 @import 'libs/cursorhover.sass'
 @import 'libs/hover-underlining.sass'
 @import 'libs/scroll.css'
@@ -11,10 +12,13 @@
 
 *
   cursor: none !important
+  @media (max-width : 576px)
+    cursor: auto !important
   ::selection
     background: $color_none
 body
   background: $color_bg
+  font-family: 'sweet_sans_prolight', sans
 h1
   margin-bottom: 0
 h2
@@ -26,6 +30,7 @@ div::selection
 header
   height: 12vh
   width : 100%
+  overflow: hidden
   nav
     background: $color_navbar
     height    : 100%
@@ -45,16 +50,36 @@ header
       h2
         display: flex
         align-content: center
-    span.navtext
+    div.menu__wrapper
+      display: flex
+      white-space: pre-wrap
+      @media (max-width : 576px)
+        flex-direction: column
+    span.comma
+      @media (max-width : 576px)
+        display: none
+    div.nav__mobile__left
+      @media (max-width : 576px)
+        margin-left: 15px
+        justify-content: flex-start
+        height: 33%
+    div.nav__mobile__right
+      @media (max-width : 576px)
+        justify-content: flex-end
+    h1.nav__mobile__title
+      @media (max-width : 576px)
+        position: absolute
+        bottom: 0px
+    h2.nav__mobile__location
+      @media (max-width : 576px)
+        position: absolute
+        top: 0px
+    .navtext
       color          : $color_text
       font-weight    : 600
-      font-size      : 18px
-  button.navbutton
-    display   : block
-    width     : 100%
-    height    : 100%
-    background: rgb(0, 0, 0, 0)
-    border    : 0
+      font-size      : 1.2vmax 
+      @media (max-width : 576px)
+        font-size      : 1.9vmax 
 
 a.link-instagram
   margin-left: 1vw
@@ -66,6 +91,8 @@ a.link-instagram
     width: 100%
     height: 100%
     transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform
+a
+  color: $color_text
 a:link
   color: $color_text
 a:active
@@ -74,12 +101,42 @@ a:visited
   color: $color_text
 a:hover
   color: $color_text
+  text-decoration: none
 
 // home section
 section.slider
-  height : 88vh
+  user-select: none
+  height: 88vh
   position: relative
   overflow: hidden
+  .container
+    display: flex
+    flex-direction: column
+    justify-content: center
+  h2
+    text-align: center
+    font-size: 1.2em
+  div.slide-about
+    background: white
+    position: absolute
+    height: 100%
+    display: flex
+    transition: all 0.9s
+    width: 100%
+    h2.about-text
+      height: 100%
+      color: $color_text
+      font-weight: 600
+      font-size: 1.2vmax 
+      @media (max-width : 576px)
+        font-size      : 1.6vmax 
+    div.about-image
+      height: 80%
+      display: flex
+      flex-direction: column
+      justify-content: center
+      @media (max-width : 576px)
+        height: 50%
   div.slide
     background: $color_bg
     position: absolute
@@ -87,33 +144,72 @@ section.slider
     display: flex
     transition: all 0.9s
     width  : 100%
-    div.home
+    @media (max-width : 576px)
+      flex-direction: column
+    div.container.slide-third
+      padding-right: 0
+      padding-left: 0
+      max-width: 100%
+      @media (max-width : 576px)
+        display: flex
+        justify-content: space-between
+      div.row
+        height: 100%
+        div.slide-third
+          @media (max-width : 576px)
+            height: 50%
+        div.slide-third.order-3
+          div.row
+            height: 80%
+            div
+              height: 100%
+              img
+                height: 100%
+    div.slide-half
       width : 50%
       height: 100%
-    div.row
-      height: 100%
-      div
-        display        : flex
-        justify-content: center
-  div.carousel-section
-    height        : calc(88vh - 20px)
-    padding-top   : 10px
-    padding-bottom: 10px
-    .container
-      height: 100%
-    div.picture0-container
-      background    : $color_carousel_starter
-    div.picture1-container
-      background    : $color_none
-    div.picture2-container
-      background    : $color_carousel_starter
+      @media (max-width : 576px)
+        width : 100%
+        height: 50%
+      div.row
+        //height: 100%
+        @media (max-width : 576px)
+          height: 100%
+        div
+          display        : flex
+          justify-content: center
+          @media (max-width : 576px)
+            height: 90%
+    
+  div.slide-picture
+    height        : 100%
+  .container
+    height: 100%
+  div.picture0
+    background    : $color_carousel_starter
+  div.picture1
+    background    : $color_none
+  div.picture2
+    background    : $color_carousel_starter
+  div.picture3
+    background    : $color_none
+  div.picture4
+    background    : $color_carousel_starter
+  div.picture5
+    background    : $color_none
+  div.picture6
+    background-color: $color_none
+    background-image: linear-gradient( -90deg, $color_none 0%, $color_none 50%, $color_carousel_starter 50%, $color_carousel_starter 50%)
+  div.picture7
+    background    : $color_carousel_starter
 
 img.sliderimage
   display: block
   width: 100%
-  object-fit: cover
+  object-fit: contain
   user-drag: none
   user-select: none
+  poiner-events: none
 
 div.slider-button
   pointer-events: none
@@ -121,24 +217,14 @@ div.slider-button
   user-drag: none
   user-select: none
   height: 100%
-  width: 9%
+  width: 5%
   display: flex
   align-items: center
   justify-content: center
-  div#buttontext
-    position: absolute
-    display: flex
-    align-items: center
-    justify-content: center
-    opacity: 0.2
-    height: 50px
-    width: 50px
-    margin-left: 40%
-    transition: 0.5s all
-    color: black
-    text-align: center
-    font-size: 15px
-    font-weight: 700
+  @media (max-width : 576px)
+    width: 15%
+    align-items: flex-end
+    padding-bottom: 5%
   svg
     pointer-events: all
     display: block
@@ -146,24 +232,21 @@ div.slider-button
     transition: 1s opacity, 0.5s transform
     fill: black
   svg.slider-prev
-    transform: scale(0.6) translateX(-30px)
     opacity: 0
   svg.slider-next
-    pointer-events: none
     transform: scale(-1,1)
     opacity: 0
   svg.slider-next.active
-    pointer-events: all
     opacity: 0.1
   svg.slider-prev.active
     opacity: 0.1
-  
 
 div.slider-prev
   left: 0
+  justify-content: flex-end
 div.slider-next
+  justify-content: flex-start
   right: 0
-
 .defs-only
   display: none
 

@@ -6,8 +6,11 @@ if (!Modernizr.inlinesvg) {
 	$("#zoom-svg-fallback").css('display', 'block');
 	$("#zoom-svg-fallback").attr("src", './img/zoom.png');
 }
-if(Modernizr.svg) {
+if(!Modernizr.svg) {
 	$("img.link-instagram").attr("src", "./img/instagram.png");
+}
+if(!Modernizr.svg) {
+	$("img.zoomed-cross").attr("src", "./img/CROSS.png");
 }
 //  mouse position 
 
@@ -132,15 +135,24 @@ $(".cursor-hover").on("mouseleave", function() {
 	cursortext.removeClass(" show_hint_copy");
 });
 
-$(".sliderimage").on("mouseenter", function() {
+$(".zoomable").on("mouseenter", function() {
 	cursorshape.addClass(" show_hint_zoom");
 	cursorzoom.addClass(" show_hint_zoom");
 });
 
-$(".sliderimage").on("mouseleave", function() {
+$(".zoomable").on("mouseleave", function() {
 	cursorshape.removeClass(" show_hint_zoom");
 	cursorzoom.removeClass(" show_hint_zoom");
 });
+
+$("a").on("mouseenter", function() {
+	cursorshape.addClass(" show_hint_button");
+});
+
+$("a").on("mouseleave", function() {
+	cursorshape.removeClass(" show_hint_button");
+});
+
 
 // DISABLING SCROLLING FUNC
 // left: 37, up: 38, right: 39, down: 40,
@@ -197,7 +209,7 @@ let canopen = true;
 const open_time = 800;
 let canclose = false;
 const close_time = 500;
-$(".sliderimage").on('click', function () { 
+$(".zoomable").on('click', function () { 
 	if(!canopen) return;
 	if(div_zoom.css('display') === 'flex') return;
 	cursorshape.removeClass(" show_hint_zoom");

@@ -13,7 +13,7 @@
     user-select    : none
     pointer-events : none
     transition: 0.3 opacity
-    @media screen and (max-width : 480px)
+    @media (max-width : 576px)
         display: none
 
 #cursor-shape
@@ -79,12 +79,14 @@ button#email_button
     background : rgb(0, 0, 0, 0)
     transition : 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform
     height: 100%
+    padding-bottom: 0.3em
 
 span.email_text
     font-size  : 28px
-    font-weight: 700
+    font-weight: 600
     user-select: none
-    padding-bottom: 8px
+    @media (max-width : 576px)
+        font-size: 20px
 
 div#copied_hint
     content        : ""

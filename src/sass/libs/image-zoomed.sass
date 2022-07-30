@@ -1,19 +1,29 @@
 
 div.image-zoomed
     position: fixed
+    user-select: none
     display: none
     top: 0
     left: 0
     justify-content: center
     align-items    : center
     height: 100%
-    width: 100%
+    width: 100vw
     opacity: 0
+    img.zoomed-cross
+        position: absolute
+        opacity: 0.4
+        height: 5%
+        top: 10px
+        right: 10px
+
     div#div-zoomed
+        user-select: all
         height: 100%
     img.image-zoomed
         height: 100%
-        object-fit: cover
+        width: 100%
+        object-fit: contain
         user-drag: none
         user-select: none
         //transition: 0.2s transform

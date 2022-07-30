@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'xm_trafficregular';
+    src: url('/fonts/xm_traffic.eot');
+    src: url('/fonts/xm_traffic.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/xm_traffic.woff2') format('woff2'),
+         url('/fonts/xm_traffic.woff') format('woff'),
+         url('/fonts/xm_traffic.svg#xm_trafficregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'sweet_sans_proextra_light';
+    src: url('/fonts/sweetsansproexlight-webfont.eot');
+    src: url('/fonts/sweetsansproexlight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/sweetsansproexlight-webfont.woff2') format('woff2'),
+         url('/fonts/sweetsansproexlight-webfont.woff') format('woff'),
+         url('/fonts/sweetsansproexlight-webfont.ttf') format('truetype'),
+         url('/fonts/sweetsansproexlight-webfont.svg#sweet_sans_proextra_light') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'sweet_sans_prolight';
+    src: url('/fonts/sweetsansprolight-webfont.eot');
+    src: url('/fonts/sweetsansprolight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/sweetsansprolight-webfont.woff2') format('woff2'),
+         url('/fonts/sweetsansprolight-webfont.woff') format('woff'),
+         url('/fonts/sweetsansprolight-webfont.ttf') format('truetype'),
+         url('/fonts/sweetsansprolight-webfont.svg#sweet_sans_prolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
