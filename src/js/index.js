@@ -1,6 +1,5 @@
 
 // check for svg support
-
 if (!Modernizr.inlinesvg) {
 	$("#zoom-svg").css('display', 'none');
 	$("#zoom-svg-fallback").css('display', 'block');
@@ -8,8 +7,6 @@ if (!Modernizr.inlinesvg) {
 }
 if(!Modernizr.svg) {
 	$("img.link-instagram").attr("src", "./img/instagram.png");
-}
-if(!Modernizr.svg) {
 	$("img.zoomed-cross").attr("src", "./img/CROSS.png");
 }
 //  mouse position 
@@ -345,3 +342,42 @@ $("a.link-instagram").click(function(){
 		next();
 	});
 });
+
+
+class TextFlow {
+    constructor(el) {
+        this.el = el;
+        this.update = this.update.bind(this);
+        this.textNew = "";
+    }
+    setText(newText, speed = 10) {
+        const promise = new Promise((resolve) => (this.resolve = resolve));
+        this.queue = [];
+        for (let nextChar of newText)
+            this.queue.push(nextChar);
+        this.frame = 0;
+        this.output = "";
+        this.update();
+        this.speed = speed;
+        return promise;
+    }
+    update() {
+        let character = this.queue[this.frame];
+        if(this.frame >= this.queue.length) {
+			this.el.innerHTML = this.output;
+            this.resolve();
+        } else {
+            let timeoutTime = this.speed + Math.floor(Math.random() * (this.speed*2))
+			if(character === '<') {
+				character = '<br>';
+				timeoutTime = timeoutTime*5;
+			} else if (character === ' ') {
+				timeoutTime = timeoutTime*3;
+			}
+			this.output += character;
+            this.el.innerHTML = this.output + '|';
+            setTimeout(() => {  this.frameRequest = requestAnimationFrame(this.update); }, timeoutTime);
+            this.frame++;
+        }
+    }
+}

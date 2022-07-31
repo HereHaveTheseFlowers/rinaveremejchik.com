@@ -83,9 +83,12 @@ header
 
 a.link-instagram
   margin-left: 1vw
-  width: 2em
-  height: 2em
-  img
+  width: 3vw
+  height: 3vw
+  @media (max-width : 576px)
+    width: 7vw
+    height: 7vw
+  img.link-instagram
     user-select: none
     user-drag: none
     width: 100%
@@ -123,20 +126,44 @@ section.slider
     display: flex
     transition: all 0.9s
     width: 100%
-    h2.about-text
-      height: 100%
-      color: $color_text
-      font-weight: 600
-      font-size: 1.2vmax 
-      @media (max-width : 576px)
-        font-size      : 1.6vmax 
+    @media (max-width : 576px)
+      flex-direction: column
     div.about-image
-      height: 80%
+      width: 50%
+      height: 100%
       display: flex
       flex-direction: column
       justify-content: center
+      align-items: center
       @media (max-width : 576px)
         height: 50%
+        width: 100%
+      img
+        width: 50%
+    div.about-text
+      width: 50%
+      height: 100%
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      @media (max-width : 576px)
+        height: 50%
+        width: 100%
+      div
+        @media (max-width : 576px)
+          height: 100%
+          margin-top: 20px
+    h2#about-text
+      height: 100%
+      text-align: center
+      font-family: 'Cutive Mono', monospace
+      color: $color_text
+      font-weight: 400
+      font-size: 1.2vmax 
+      @media (max-width : 576px)
+        font-weight: 600
+        font-size      : 1.4vmax 
   div.slide
     background: $color_bg
     position: absolute
@@ -158,6 +185,16 @@ section.slider
         div.slide-third
           @media (max-width : 576px)
             height: 50%
+        div.slide-third.order-1
+          div.row
+            div
+              @media (min-width : 577px)
+                margin-left: 25%
+        div.slide-third.order-2
+          div.row
+            div
+              @media (min-width : 577px)
+                margin-left: 0
         div.slide-third.order-3
           div.row
             height: 80%
@@ -178,9 +215,23 @@ section.slider
         div
           display        : flex
           justify-content: center
-          @media (max-width : 576px)
-            height: 90%
-    
+          height: 90%
+      div.row-email
+        margin-bottom: 20px
+        @media (max-width : 576px)
+          height: 20%
+          margin-bottom: 0
+      div.row-instagram
+        @media (max-width : 576px)
+          height: 20%
+          margin-bottom: 100px
+    .swipe-panel
+      position: absolute
+      bottom: 10px
+      width: 50%
+      right: 0
+      @media (max-width : 576px)
+        width: 100%
   div.slide-picture
     height        : 100%
   .container

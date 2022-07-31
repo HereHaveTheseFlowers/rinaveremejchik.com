@@ -8,7 +8,9 @@ for(let i = 1; i <= 20; i++) {
     })
 }
 
-function magnetize(el, e, magnetOffset){
+function magnetize(el, e, magnetOffset) {
+    if(window.screen.width <= 576)
+        return
     let mX = e.pageX,
         mY = e.pageY;
     const item = $(el);
