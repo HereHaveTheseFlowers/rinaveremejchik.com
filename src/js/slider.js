@@ -3,7 +3,8 @@ const slides = document.querySelectorAll(".slide");
 const slide_about = document.querySelector(".slide-about");
 // maximum number of slides
 const maxSlide = slides.length - 1;
-
+// Select all images
+const zoomable_images = document.querySelectorAll('img.zoomable')
 // reverse the list
 // also note slidesposition, it looks like: -200, -100, 0
 const slidesreversed = [];
@@ -100,13 +101,47 @@ function goToPrevSlide() {
 }
 // add event listener and navigation functionality
 nextSlide.on("click", function () {
-    goToNextSlide();
-    goToNextSlide();
+    if($("div.image-zoomed").css('display') === 'flex') {
+        for (let index in zoomable_images) {
+            if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src && Number(index) !== (zoomable_images.length - 1)) {
+                if($(zoomable_images[Number(index) + 1]).hasClass("3-2")) {
+                    $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('.jpg', '-3x2.jpg'))
+                } else {
+                    $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src)
+                }
+                return;
+            }
+        }
+    } else {
+        goToNextSlide();
+        goToNextSlide();
+    }
 });
 
 prevSlide.on("click", function () {
-    goToPrevSlide();
-    goToPrevSlide();
+    if($("div.image-zoomed").css('display') === 'flex') {
+        for (let index in zoomable_images) {
+            if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src && Number(index) !== 0) {
+                if($(zoomable_images[Number(index) - 1]).hasClass("3-2")) {
+                    let newImage = new Image;
+                    newImage.onload = function() {
+                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('.jpg', '-3x2.jpg'))
+                    }
+                    newImage.src = zoomable_images[Number(index) - 1].src.replace('.jpg', '-3x2.jpg')
+                } else {
+                    let newImage = new Image;
+                    newImage.onload = function() {
+                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src)
+                    }
+                    newImage.src = zoomable_images[Number(index) - 1].src
+                }
+                return;
+            }
+        }
+    } else {
+        goToPrevSlide();
+        goToPrevSlide();
+    }
 });
 
 $(".swipe-about").on("click", function () {
@@ -138,12 +173,48 @@ $(".swipe-works").on("click", function () {
 
 $( "body" ).keydown(function(e) {
     if(e.which === 39) {
-        goToNextSlide();
-        goToNextSlide();
+        if($("div.image-zoomed").css('display') === 'flex') {
+            for (let index in zoomable_images) {
+                if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src && Number(index) !== (zoomable_images.length - 1)) {
+                    if($(zoomable_images[Number(index) + 1]).hasClass("3-2")) {
+                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('.jpg', '-3x2.jpg'))
+                    } else {
+                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src)
+                    }
+                    return;
+                }
+            }
+            return;
+        } else {
+            goToNextSlide();
+            goToNextSlide();
+        }
     }
     else if(e.which === 37) {
-        goToPrevSlide();
-        goToPrevSlide();
+        if($("div.image-zoomed").css('display') === 'flex') {
+            for (let index in zoomable_images) {
+                if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src && Number(index) !== 0) {
+                    if($(zoomable_images[Number(index) - 1]).hasClass("3-2")) {
+                        let newImage = new Image;
+                        newImage.onload = function() {
+                            $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('.jpg', '-3x2.jpg'))
+                        }
+                        newImage.src = zoomable_images[Number(index) - 1].src.replace('.jpg', '-3x2.jpg')
+                    } else {
+                        let newImage = new Image;
+                        newImage.onload = function() {
+                            $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src)
+                        }
+                        newImage.src = zoomable_images[Number(index) - 1].src
+                    }
+                    return;
+                }
+            }
+            return;
+        } else {
+            goToPrevSlide();
+            goToPrevSlide();
+        }
     }
 });
     

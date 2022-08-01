@@ -81,6 +81,26 @@ header
       @media (max-width : 576px)
         font-size      : 1.9vmax 
 
+div.icon_logo
+  width: 9%
+  padding-bottom: 1%
+  margin-right: 2%
+  display: flex
+  flex-direction: column
+  justify-content: center
+  stroke-width: 2.5em
+  fill: none
+  stroke: $color_text
+  stroke-miterlimit: 10
+  @media (max-width : 576px)
+    display: none
+  #icon_logo-fallback
+    display: none
+    height: 100%
+    width: 100%
+    @media (max-width : 576px)
+      display: none
+
 a.link-instagram
   margin-left: 1vw
   width: 3vw
@@ -129,6 +149,7 @@ section.slider
     @media (max-width : 576px)
       flex-direction: column
     div.about-image
+      background: $color_carousel_starter
       width: 50%
       height: 100%
       display: flex
@@ -252,6 +273,14 @@ section.slider
     background-color: $color_none
     background-image: linear-gradient( -90deg, $color_none 0%, $color_none 50%, $color_carousel_starter 50%, $color_carousel_starter 50%)
   div.picture7
+    background    : $color_carousel_starter
+  div.picture8
+    background    : $color_none
+  div.picture9
+    background    : $color_carousel_starter
+  div.picture10
+    background    : $color_none
+  div.picture11
     background    : $color_carousel_starter
 
 img.sliderimage
