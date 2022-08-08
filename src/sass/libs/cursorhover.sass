@@ -41,6 +41,20 @@
     transition      : 0.3s  transform, 0.3s cubic-bezier(0.75, 0.5, 0.8, 0.9) opacity
     transform: scale(0)
 
+#loading
+    width: 100%
+    max-width: 400px
+    height: auto
+    justify-content: center
+    display: none
+    position: absolute
+
+#spinner
+    fill: none
+    stroke: $color_cursor
+    opacity  : $opacity_cursor
+    stroke-width: 8
+
 #cursor-zoom
     height    : 80%
     fill      : $color_cursor
@@ -73,6 +87,9 @@
 #cursor-text.show_hint_copy
     opacity  : 1
     transform: scale(2)
+
+.hidden
+    display: none !important
 
 button#email_button
     border     : 0

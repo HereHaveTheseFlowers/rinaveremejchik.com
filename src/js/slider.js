@@ -85,7 +85,7 @@ function goToPrevSlide() {
     } else {
         curSlide--;
     }
-    if(curSlide === 1) prevSlidesvg.removeClass('active');
+    if(curSlide === 1) $('#slider-prev-svg').removeClass('active');
     nextSlidesvg.addClass('active');
 	prevSlidesvg.css('transform', `scale(${svgTransform})`)
 	setTimeout(() =>  {
@@ -103,12 +103,13 @@ function goToPrevSlide() {
 nextSlide.on("click", function () {
     if($("div.image-zoomed").css('display') === 'flex') {
         for (let index in zoomable_images) {
-            if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src && Number(index) !== (zoomable_images.length - 1)) {
+            if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src.replace('-min', '') && Number(index) !== (zoomable_images.length - 1)) {
                 if($(zoomable_images[Number(index) + 1]).hasClass("3-2")) {
-                    $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('.jpg', '-3x2.jpg'))
+                    $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg'))
                 } else {
-                    $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src)
+                    $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('-min', ''))
                 }
+                $('img.image-zoomed').attr('alt', zoomable_images[Number(index) + 1].alt);
                 return;
             }
         }
@@ -121,20 +122,37 @@ nextSlide.on("click", function () {
 prevSlide.on("click", function () {
     if($("div.image-zoomed").css('display') === 'flex') {
         for (let index in zoomable_images) {
-            if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src && Number(index) !== 0) {
+            if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src.replace('-min', '') && Number(index) !== 0) {
                 if($(zoomable_images[Number(index) - 1]).hasClass("3-2")) {
                     let newImage = new Image;
+                    $('#loading').css('display', 'flex');
+                    cursorshape.addClass(" hidden");
+                    cursorzoom.addClass(" hidden");
+                    cursortext.addClass(" hidden");
                     newImage.onload = function() {
-                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('.jpg', '-3x2.jpg'))
+                        $('#loading').css('display', 'none');
+                        cursorshape.removeClass(" hidden");
+                        cursorzoom.removeClass(" hidden");
+                        cursortext.removeClass(" hidden");
+                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg'))
                     }
-                    newImage.src = zoomable_images[Number(index) - 1].src.replace('.jpg', '-3x2.jpg')
+                    newImage.src = zoomable_images[Number(index) - 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg')
                 } else {
                     let newImage = new Image;
+                    $('#loading').css('display', 'flex');
+                    cursorshape.addClass(" hidden");
+                    cursorzoom.addClass(" hidden");
+                    cursortext.addClass(" hidden");
                     newImage.onload = function() {
-                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src)
+                        $('#loading').css('display', 'none');
+                        cursorshape.removeClass(" hidden");
+                        cursorzoom.removeClass(" hidden");
+                        cursortext.removeClass(" hidden");
+                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('-min', ''))
                     }
-                    newImage.src = zoomable_images[Number(index) - 1].src
+                    newImage.src = zoomable_images[Number(index) - 1].src.replace('-min', '')
                 }
+                $('img.image-zoomed').attr('alt', zoomable_images[Number(index) - 1].alt);
                 return;
             }
         }
@@ -175,12 +193,13 @@ $( "body" ).keydown(function(e) {
     if(e.which === 39) {
         if($("div.image-zoomed").css('display') === 'flex') {
             for (let index in zoomable_images) {
-                if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src && Number(index) !== (zoomable_images.length - 1)) {
+                if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src.replace('-min', '') && Number(index) !== (zoomable_images.length - 1)) {
                     if($(zoomable_images[Number(index) + 1]).hasClass("3-2")) {
-                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('.jpg', '-3x2.jpg'))
+                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg'))
                     } else {
-                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src)
+                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('-min', ''))
                     }
+                    $('img.image-zoomed').attr('alt', zoomable_images[Number(index) + 1].alt);
                     return;
                 }
             }
@@ -193,20 +212,33 @@ $( "body" ).keydown(function(e) {
     else if(e.which === 37) {
         if($("div.image-zoomed").css('display') === 'flex') {
             for (let index in zoomable_images) {
-                if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src && Number(index) !== 0) {
+                if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src.replace('-min', '') && Number(index) !== 0) {
+                    $('#loading').css('display', 'flex');
+                    cursorshape.addClass(" hidden");
+                    cursorzoom.addClass(" hidden");
+                    cursortext.addClass(" hidden");
                     if($(zoomable_images[Number(index) - 1]).hasClass("3-2")) {
                         let newImage = new Image;
                         newImage.onload = function() {
-                            $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('.jpg', '-3x2.jpg'))
+                            $('#loading').css('display', 'none');
+                            cursorshape.removeClass(" hidden");
+                            cursorzoom.removeClass(" hidden");
+                            cursortext.removeClass(" hidden");
+                            $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg'))
                         }
-                        newImage.src = zoomable_images[Number(index) - 1].src.replace('.jpg', '-3x2.jpg')
+                        newImage.src = zoomable_images[Number(index) - 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg')
                     } else {
                         let newImage = new Image;
                         newImage.onload = function() {
-                            $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src)
+                            $('#loading').css('display', 'none');
+                            cursorshape.removeClass(" hidden");
+                            cursorzoom.removeClass(" hidden");
+                            cursortext.removeClass(" hidden");
+                            $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('-min', ''))
                         }
-                        newImage.src = zoomable_images[Number(index) - 1].src
+                        newImage.src = zoomable_images[Number(index) - 1].src.replace('-min', '')
                     }
+                    $('img.image-zoomed').attr('alt', zoomable_images[Number(index) - 1].alt);
                     return;
                 }
             }
@@ -226,7 +258,7 @@ let posInit = 0;
 let posX1 = 0;
 let posFinal = 0;
 let slideWidth = slides[0].offsetWidth;
-let posThreshold = slideWidth * .01;
+let posThreshold = slideWidth * 0.106;
 function swipeStart() {
     let evt = getEvent();
   

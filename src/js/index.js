@@ -1,4 +1,5 @@
 
+
 //  mouse position 
 
 const currentMousePos = { x: -1, y: -1 };
@@ -11,7 +12,6 @@ $(document).on("mousemove", function(e) {
 // email button click event
 
 let email_button = $("#email_button");
-let dont_show_hint = false;
 
 email_button.click(function(){
 	email_button.css('transform', 'scale(0.93)')
@@ -24,9 +24,15 @@ email_button.click(function(){
 	const text = circle.appendChild(document.createElement(`span`));
 	text.id = `copied_hint`;
 	text.textContent = `Copied!`;
-	circle.style.top = `calc(${currentMousePos.y}px - 7.5vh)`
-	circle.style.left = `calc(${currentMousePos.x}px - 7.5vh)`
-	document.body.appendChild(circle);
+	if(window.screen.width <= 576) {
+		circle.style.top = `calc(${currentMousePos.y - 55}px)`
+		circle.style.left = `calc(${currentMousePos.x - 55}px)`
+		document.body.append(circle);
+	} else {
+		circle.style.top = `calc(${currentMousePos.y}px - 7.5vh)`
+		circle.style.left = `calc(${currentMousePos.x}px - 7.5vh)`
+		document.body.appendChild(circle);
+	}
 	dont_show_hint = true;
 	cursorshape.removeClass(" show_hint_copy");
 	cursortext.removeClass(" show_hint_copy");
@@ -95,25 +101,43 @@ let canclose = false;
 const close_time = 500;
 $(".zoomable").on('click', function () { 
 	if(!canopen) return;
-	if(div_zoom.css('display') === 'flex') return;
 	cursorshape.removeClass(" show_hint_zoom");
 	cursorzoom.removeClass(" show_hint_zoom");
 	disableScroll();
 	zoom = 1;
-	image_zoom.css('transform', `scale(${zoom})`);
-	if($(this).hasClass("3-2")) {
-		let newsrc = this.src.replace('.jpg', '-3x2.jpg');
+	let newImage = new Image;
+	let newsrc = '';
+	$('#loading').css('display', 'flex');
+	cursorshape.addClass(" hidden");
+	cursorzoom.addClass(" hidden");
+	cursortext.addClass(" hidden");
+	newImage.onload = function() {
+		$('#loading').css('display', 'none');
+		cursorshape.removeClass(" hidden");
+		cursorzoom.removeClass(" hidden");
+		cursortext.removeClass(" hidden");
 		image_zoom.attr('src', (newsrc));
-	} else {
-		image_zoom.attr('src', this.src);
+		div_zoom.css('display', 'flex');
+		div_zoom.removeClass('is-hidden');
+		div_zoom.addClass('is-visible');
+		$("main").css('filter', 'blur(10px)');
+		$("header").css('filter', 'blur(8px)');
+		setTimeout(() =>  {
+			canopen = true;
+		}, open_time);
+		setTimeout(() =>  {
+			canclose = true;
+		}, close_time);
 	}
-	
+	if($(this).hasClass("3-2")) {
+		newsrc = this.src.replace('-min', '').replace('.jpg', '-3x2.jpg');
+	} else {
+		newsrc = this.src.replace('-min', '');
+	}
+	canopen = false;
+	canclose = false;
+	newImage.src = newsrc;
 	image_zoom.attr('alt', this.alt);
-	div_zoom.css('display', 'flex');
-	div_zoom.removeClass('is-hidden');
-	div_zoom.addClass('is-visible');
-	$("main").css('filter', 'blur(10px)');
-	$("header").css('filter', 'blur(8px)');
 	$(image_zoom).hover(
 		function() { $.data(this, 'hover', true); },
 		function() { $.data(this, 'hover', false); }
@@ -126,20 +150,16 @@ $(".zoomable").on('click', function () {
 		function() { $.data(this, 'hover', true); },
 		function() { $.data(this, 'hover', false); }
 	).data('hover', false);
-	canopen = false;
-	canclose = false;
-	setTimeout(() =>  {
-		canopen = true;
-	}, open_time);
-	setTimeout(() =>  {
-		canclose = true;
-	}, close_time);
+	$('svg#zoomed-svg-mobile').hover(
+		function() { $.data(this, 'hover', true); },
+		function() { $.data(this, 'hover', false); }
+	).data('hover', false);
 });
 $('html').on('click', function () { 
 	let noticehover = false;
 	for(let notice of listofnotices)
 		if($(notice).data('hover')) noticehover = true;
-	if(canclose && !noticehover && !$(image_zoom).data('hover') && !$('#slider-button-zoomed-right').data('hover') && !$('#slider-button-zoomed-left').data('hover')) {
+	if(canclose && !noticehover && !$(image_zoom).data('hover') && !$('#slider-button-zoomed-right').data('hover') && !$('#slider-button-zoomed-left').data('hover') && !$('svg#zoomed-svg-mobile').data('hover')) {
 		div_zoom.addClass('is-hidden');
 		$("main").css('filter', 'none');
 		$("header").css('filter', 'none');
@@ -156,11 +176,24 @@ $('html').on('click', function () {
 		}, 500);
 	}
 });
-/* $('img.image-zoomed').on('click', function () {
+// for mobile
+$('div#zoomed-svg-mobile').on('click', function () {
+	$('svg#zoomed-svg-mobile').css('transform', 'scale(0.86)')
+	setTimeout(() =>  {
+		$('svg#zoomed-svg-mobile').css('transform', 'scale(1)')
+	}, 200);
 	if(zoom === 1) zoom = 1.48;
 	else zoom = 1;
 	image_zoom.css('transform', `scale(${(zoom)})`);
-}); */
+	console.log('hiii')
+});
+
+$("img.zoomed-cross").click(function(){
+	$('img.zoomed-cross').css('transform', 'scale(0.86)')
+	setTimeout(() =>  {
+		$('img.zoomed-cross').css('transform', 'scale(1)')
+	}, 200);
+});
 
 document.addEventListener("wheel", (e)=> {
 	if(div_zoom.css('display') === 'flex' && zoom >= 1 && zoom <= 1.5) {

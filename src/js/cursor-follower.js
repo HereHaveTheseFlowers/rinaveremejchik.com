@@ -4,6 +4,7 @@ let follower = $("#cursor-follower");
 let cursorshape = $("#cursor-shape");
 let cursortext = $("#cursor-text");
 let cursorzoom = $("#cursor-zoom");
+let dont_show_hint = false;
 
 gsap.set(follower, {xPercent: -50, yPercent: -50});
 
