@@ -73,7 +73,6 @@ let wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewh
 
 // call this to Disable
 function disableScroll() {
-	SmoothScroll({stepSize:0,})
 	window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
 	window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
 	window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
@@ -82,7 +81,6 @@ function disableScroll() {
 
 // call this to Enable
 function enableScroll() {
-	SmoothScroll({stepSize:75,})
 	window.removeEventListener('DOMMouseScroll', preventDefault, false);
 	window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
 	window.removeEventListener('touchmove', preventDefault, wheelOpt);
