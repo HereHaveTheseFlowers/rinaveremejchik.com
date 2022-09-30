@@ -9,5 +9,5 @@
          url('/fonts/sweetsansprolight-webfont.svg#sweet_sans_prolight') format('svg');
     font-weight: normal;
     font-style: normal;
-
+    font-display: swap;
 }

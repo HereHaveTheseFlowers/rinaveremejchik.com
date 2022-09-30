@@ -171,6 +171,8 @@ $('html').on('click', function () {
 			image_zoom.attr('src', '');
 			$('#div-zoomed').css('left', '0');
 			$('#div-zoomed').css('top', '0');
+			zoom = 1;
+			image_zoom.css('transform', `scale(${(zoom)})`);
 		}, 500);
 	}
 });
