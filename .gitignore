@@ -1,8 +1,3 @@
-# Photoshop mockup
 dev/
-
-# VScode workspace file
 *.code-workspace
-
-# Stinky large node modules
 node_modules/
