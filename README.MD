@@ -9,6 +9,16 @@ SVG is being used throughout the project so user experience feels more smooth. I
 
 The website is also responsive and all of the features are mobile-friendly.
 
+## Deploy
+
+The website is deployed on https://rinav.site
+
+<a href="https://rinav.site/" target="_blank" rel="noopener noreferrer">
+
+![Google Chrome - Light](https://user-images.githubusercontent.com/106176669/198884542-0bf5206a-116b-4786-9d7e-ca54a26a3d1d.png)
+
+</a>
+
 ## Installation
- - 1. `npm install`
- - 2. `gulp`
+ 1. `npm install`
+ 2. `gulp`
