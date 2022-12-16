@@ -1,0 +1,46 @@
+.campaign-panel
+    position: absolute
+    width: calc(100% - 30px)
+    bottom: 0
+    display: flex
+    justify-content: center
+    height: 50px !important
+    pointer-events: none
+
+.campaign-slider
+    height: 100%
+    bottom: 20px
+    position: absolute
+    pointer-events: auto
+
+.campaign-button
+    user-drag: none
+    user-select: none
+    background: none
+    border: 0
+    margin: 0 10px
+    padding: 0
+    transition: 0.15s transform linear
+    width: 30px
+    height: 40px
+    
+.campaign-button:hover
+    transform: scale(1.3)
+
+.campaign-button-svg
+    fill: rgba(#000, 0.2)
+    height: 100%
+    width: 100%
+
+.campaign-image
+    height: 100%
+    width: 100%
+    object-fit: contain
+    user-drag: none
+    user-select: none
+    opacity: 0.4
+    transition: 0.1s opacity
+
+.campaign-image-selected
+    opacity: 0.85
+

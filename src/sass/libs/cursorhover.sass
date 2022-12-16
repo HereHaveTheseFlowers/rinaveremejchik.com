@@ -12,7 +12,7 @@
     z-index        : 80
     user-select    : none
     pointer-events : none
-    transition: 0.3 opacity
+    transition: 0.3s opacity
     @media (max-width : 576px)
         display: none
 
@@ -38,7 +38,7 @@
     
 #cursor-shape.show_hint_zoom
     opacity  : $opacity_cursor
-    transition      : 0.3s  transform, 0.3s cubic-bezier(0.75, 0.5, 0.8, 0.9) opacity
+    transition      : 0.2s  transform, 0.2s cubic-bezier(0.75, 0.5, 0.8, 0.9) opacity
     transform: scale(0)
 
 #loading
@@ -63,7 +63,7 @@
     opacity   : 0
     position  : absolute
     transform : scale(0)
-    transition: 0.35s cubic-bezier(0.75, 0.5, 0.8, 1.8) transform, 0.35s opacity
+    transition: 0.2s cubic-bezier(0.75, 0.5, 0.8, 1.8) transform, 0.2s opacity
 
 #cursor-zoom.show_hint_zoom
     opacity  : $opacity_cursor

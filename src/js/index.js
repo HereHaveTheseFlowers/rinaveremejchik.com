@@ -127,10 +127,10 @@ $(".zoomable").on('click', function () {
 			canclose = true;
 		}, close_time);
 	}
-	if($(this).hasClass("3-2")) {
-		newsrc = this.src.replace('-min', '').replace('.jpg', '-3x2.jpg');
+	if($(this).attr("src").includes("has3x2")) {
+		newsrc = this.src.replace('-min', '').replace('-icon', '').replace('-lowq', '').replace('.jpg', '-3x2.jpg');
 	} else {
-		newsrc = this.src.replace('-min', '');
+		newsrc = this.src.replace('-min', '').replace('-icon', '').replace('-lowq', '');
 	}
 	canopen = false;
 	canclose = false;

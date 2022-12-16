@@ -4,7 +4,7 @@ const slide_about = document.querySelector(".slide-about");
 // maximum number of slides
 const maxSlide = slides.length - 1;
 // Select all images
-const zoomable_images = document.querySelectorAll('img.zoomable')
+const campaign_images = document.querySelectorAll('.campaign-image')
 // reverse the list
 // also note slidesposition, it looks like: -200, -100, 0
 const slidesreversed = [];
@@ -102,14 +102,14 @@ function goToPrevSlide() {
 // add event listener and navigation functionality
 nextSlide.on("click", function () {
     if($("div.image-zoomed").css('display') === 'flex') {
-        for (let index in zoomable_images) {
-            if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src.replace('-min', '') && Number(index) !== (zoomable_images.length - 1)) {
-                if($(zoomable_images[Number(index) + 1]).hasClass("3-2")) {
-                    $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg'))
+        for (let index in campaign_images) {
+            if($('img.image-zoomed').attr('src').replace('-3x2', '') === campaign_images[index].src.replace('-icon', '') && Number(index) !== (campaign_images.length - 1)) {
+                if(campaign_images[Number(index) + 1].src.includes("has3x2")) {
+                    $('img.image-zoomed').attr('src', campaign_images[Number(index) + 1].src.replace('-icon', '').replace('.jpg', '-3x2.jpg'))
                 } else {
-                    $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('-min', ''))
+                    $('img.image-zoomed').attr('src', campaign_images[Number(index) + 1].src.replace('-icon', ''))
                 }
-                $('img.image-zoomed').attr('alt', zoomable_images[Number(index) + 1].alt);
+                $('img.image-zoomed').attr('alt', campaign_images[Number(index) + 1].alt);
                 return;
             }
         }
@@ -121,9 +121,9 @@ nextSlide.on("click", function () {
 
 prevSlide.on("click", function () {
     if($("div.image-zoomed").css('display') === 'flex') {
-        for (let index in zoomable_images) {
-            if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src.replace('-min', '') && Number(index) !== 0) {
-                if($(zoomable_images[Number(index) - 1]).hasClass("3-2")) {
+        for (let index in campaign_images) {
+            if($('img.image-zoomed').attr('src').replace('-3x2', '') === campaign_images[index].src.replace('-icon', '') && Number(index) !== 0) {
+                if(campaign_images[Number(index) - 1].src.includes("has3x2")) {
                     let newImage = new Image;
                     $('#loading').css('display', 'flex');
                     cursorshape.addClass(" hidden");
@@ -134,9 +134,9 @@ prevSlide.on("click", function () {
                         cursorshape.removeClass(" hidden");
                         cursorzoom.removeClass(" hidden");
                         cursortext.removeClass(" hidden");
-                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg'))
+                        $('img.image-zoomed').attr('src', campaign_images[Number(index) - 1].src.replace('-icon', '').replace('.jpg', '-3x2.jpg'))
                     }
-                    newImage.src = zoomable_images[Number(index) - 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg')
+                    newImage.src = campaign_images[Number(index) - 1].src.replace('-icon', '').replace('.jpg', '-3x2.jpg')
                 } else {
                     let newImage = new Image;
                     $('#loading').css('display', 'flex');
@@ -148,11 +148,11 @@ prevSlide.on("click", function () {
                         cursorshape.removeClass(" hidden");
                         cursorzoom.removeClass(" hidden");
                         cursortext.removeClass(" hidden");
-                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('-min', ''))
+                        $('img.image-zoomed').attr('src', campaign_images[Number(index) - 1].src.replace('-icon', ''))
                     }
-                    newImage.src = zoomable_images[Number(index) - 1].src.replace('-min', '')
+                    newImage.src = campaign_images[Number(index) - 1].src.replace('-icon', '')
                 }
-                $('img.image-zoomed').attr('alt', zoomable_images[Number(index) - 1].alt);
+                $('img.image-zoomed').attr('alt', campaign_images[Number(index) - 1].alt);
                 return;
             }
         }
@@ -192,14 +192,14 @@ $(".swipe-works").on("click", function () {
 $( "body" ).keydown(function(e) {
     if(e.which === 39) {
         if($("div.image-zoomed").css('display') === 'flex') {
-            for (let index in zoomable_images) {
-                if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src.replace('-min', '') && Number(index) !== (zoomable_images.length - 1)) {
-                    if($(zoomable_images[Number(index) + 1]).hasClass("3-2")) {
-                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg'))
+            for (let index in campaign_images) {
+                if($('img.image-zoomed').attr('src').replace('-3x2', '') === campaign_images[index].src.replace('-icon', '') && Number(index) !== (campaign_images.length - 1)) {
+                    if(campaign_images[Number(index) + 1].src.includes("has3x2")) {
+                        $('img.image-zoomed').attr('src', campaign_images[Number(index) + 1].src.replace('-icon', '').replace('.jpg', '-3x2.jpg'))
                     } else {
-                        $('img.image-zoomed').attr('src', zoomable_images[Number(index) + 1].src.replace('-min', ''))
+                        $('img.image-zoomed').attr('src', campaign_images[Number(index) + 1].src.replace('-icon', ''))
                     }
-                    $('img.image-zoomed').attr('alt', zoomable_images[Number(index) + 1].alt);
+                    $('img.image-zoomed').attr('alt', campaign_images[Number(index) + 1].alt);
                     return;
                 }
             }
@@ -211,22 +211,22 @@ $( "body" ).keydown(function(e) {
     }
     else if(e.which === 37) {
         if($("div.image-zoomed").css('display') === 'flex') {
-            for (let index in zoomable_images) {
-                if($('img.image-zoomed').attr('src').replace('-3x2', '') === zoomable_images[index].src.replace('-min', '') && Number(index) !== 0) {
+            for (let index in campaign_images) {
+                if($('img.image-zoomed').attr('src').replace('-3x2', '') === campaign_images[index].src.replace('-icon', '') && Number(index) !== 0) {
                     $('#loading').css('display', 'flex');
                     cursorshape.addClass(" hidden");
                     cursorzoom.addClass(" hidden");
                     cursortext.addClass(" hidden");
-                    if($(zoomable_images[Number(index) - 1]).hasClass("3-2")) {
+                    if(campaign_images[Number(index) - 1].src.includes("has3x2")) {
                         let newImage = new Image;
                         newImage.onload = function() {
                             $('#loading').css('display', 'none');
                             cursorshape.removeClass(" hidden");
                             cursorzoom.removeClass(" hidden");
                             cursortext.removeClass(" hidden");
-                            $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg'))
+                            $('img.image-zoomed').attr('src', campaign_images[Number(index) - 1].src.replace('-icon', '').replace('.jpg', '-3x2.jpg'))
                         }
-                        newImage.src = zoomable_images[Number(index) - 1].src.replace('-min', '').replace('.jpg', '-3x2.jpg')
+                        newImage.src = campaign_images[Number(index) - 1].src.replace('-icon', '').replace('.jpg', '-3x2.jpg')
                     } else {
                         let newImage = new Image;
                         newImage.onload = function() {
@@ -234,11 +234,11 @@ $( "body" ).keydown(function(e) {
                             cursorshape.removeClass(" hidden");
                             cursorzoom.removeClass(" hidden");
                             cursortext.removeClass(" hidden");
-                            $('img.image-zoomed').attr('src', zoomable_images[Number(index) - 1].src.replace('-min', ''))
+                            $('img.image-zoomed').attr('src', campaign_images[Number(index) - 1].src.replace('-icon', ''))
                         }
-                        newImage.src = zoomable_images[Number(index) - 1].src.replace('-min', '')
+                        newImage.src = campaign_images[Number(index) - 1].src.replace('-icon', '')
                     }
-                    $('img.image-zoomed').attr('alt', zoomable_images[Number(index) - 1].alt);
+                    $('img.image-zoomed').attr('alt', campaign_images[Number(index) - 1].alt);
                     return;
                 }
             }

@@ -9,19 +9,27 @@
 @import 'libs/image-notice.sass'
 @import 'libs/image-zoomed.sass'
 @import 'libs/instagram-link.sass'
+@import 'libs/campaign-slider.sass'
 
+svg
+  -webkit-transform: translate3d(0,0,0)
+  
 html
   width: 100%
   height: 100%
   position: fixed
+  -webkit-font-smoothing: antialiased
+
 *
   cursor: none !important
   @media (max-width : 576px)
     cursor: auto !important
   ::selection
     background: $color_none
+
 button:focus
   border: 0
+  
 body
   height: 100%
   background: $color_bg
@@ -233,6 +241,7 @@ section.slider
               img
                 height: 100%
     div.slide-half
+      position: relative
       width : 50%
       height: 100%
       @media (max-width : 576px)
@@ -266,30 +275,30 @@ section.slider
     height        : 100%
   .container
     height: 100%
-  div.picture0
+  div.campaign0
     background    : $color_carousel_starter
-  div.picture1
+  div.campaign1
     background    : $color_none
-  div.picture2
+  div.campaign2
     background    : $color_carousel_starter
-  div.picture3
+  div.campaign3
     background    : $color_none
-  div.picture4
+  div.campaign4
     background    : $color_carousel_starter
-  div.picture5
+  div.campaign5
     background    : $color_none
-  div.picture6
+  div.campaign6
     background-color: $color_none
     background-image: linear-gradient( -90deg, $color_none 0%, $color_none 50%, $color_carousel_starter 50%, $color_carousel_starter 50%)
-  div.picture7
+  div.campaign7
     background    : $color_carousel_starter
-  div.picture8
+  div.campaign8
     background    : $color_none
-  div.picture9
+  div.campaign9
     background    : $color_carousel_starter
-  div.picture10
+  div.campaign10
     background    : $color_none
-  div.picture11
+  div.campaign11
     background    : $color_carousel_starter
 
 img.sliderimage
@@ -318,8 +327,8 @@ div.slider-button
     pointer-events: all
     display: block
     opacity: 0.1
-    transition: 1s opacity, 0.5s transform
-    fill: black
+    transition: 0.5s opacity, 0.2s transform
+    fill: #000
   svg.slider-prev
     opacity: 0
   svg.slider-next

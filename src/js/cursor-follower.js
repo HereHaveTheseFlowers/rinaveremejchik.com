@@ -77,3 +77,11 @@ $("a").on("mouseenter", function() {
 $("a").on("mouseleave", function() {
 	cursorshape.removeClass(" show_hint_button");
 });
+
+$("button").on("mouseenter", function() {
+	cursorshape.addClass(" show_hint_button");
+});
+
+$("button").on("mouseleave", function() {
+	cursorshape.removeClass(" show_hint_button");
+});
