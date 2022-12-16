@@ -11,7 +11,6 @@ const slidesreversed = [];
 let i = maxSlide;
 let slidesposition = [];
 let slide_about_position = 100;
-let showed_about = false;
 slide_about.style.transform = `translateX(${slide_about_position}%)`;
 while(i >= 0) {
     slidesreversed.push(slides[i])
@@ -55,13 +54,6 @@ function goToNextSlide() {
     }
     if(curSlide === slides.length * 2 + 1) {
         nextSlidesvg.removeClass('active');
-        if(!showed_about) {
-            showed_about = true;
-            const loadingtext = document.getElementById('about-text');
-            const loadingtextflow = new TextFlow(loadingtext);
-            let text_flow = "Hi! My name is Rina.< I'm a professional retoucher and post production artist specializing in fashion, beauty, commerce, people and product retouch.<< My clients are photographers and brands from all over the world. Including SKIMS, ASICS, Estée Lauder and more.  I am constantly learning and practicing my craft to offer you a better services. Feel free to contact me for any details.< I'm looking forward to working with you!"
-            loadingtextflow.setText(text_flow, 14)
-        }
     }
     prevSlidesvg.addClass('active');
 	nextSlidesvg.css('transform', `scale(${-svgTransform}, ${svgTransform})`)
