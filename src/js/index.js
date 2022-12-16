@@ -13,12 +13,30 @@ $(document).on("mousemove", function(e) {
 
 let email_button = $("#email_button");
 
+function unsecuredCopyToClipboard(text) {
+	const textArea = document.createElement("textarea");
+	textArea.value = text;
+	document.body.appendChild(textArea);
+	textArea.focus();
+	textArea.select();
+	try {
+	  document.execCommand('copy');
+	} catch (err) {
+	  console.error('Unable to copy to clipboard', err);
+	}
+	document.body.removeChild(textArea);
+}
+
 email_button.click(function(){
 	email_button.css('transform', 'scale(0.93)')
 	setTimeout(() =>  {
 		email_button.css('transform', 'scale(1)')
 	}, 200);
-	navigator.clipboard.writeText('rinaveremejchik@gmail.com')
+	if(window.isSecureContext && navigator.clipboard) {
+		navigator.clipboard.writeText('rinaveremejchik@gmail.com')
+	} else {
+		unsecuredCopyToClipboard('rinaveremejchik@gmail.com');
+	}
 	const circle = document.createElement(`div`);
 	circle.id = `copied_hint`;
 	const text = circle.appendChild(document.createElement(`span`));
