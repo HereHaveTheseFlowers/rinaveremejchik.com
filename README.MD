@@ -1,5 +1,5 @@
 ## About
-This is an elegant, minimal portfolio website for a professional beauty retoucher.
+This is an elegant, minimal portfolio website for a professional high-end retoucher.
 
 The main point of the site is to display high-quality images to the potential clients. Therefore, our biggest concern is loading time increased by the size of the pictures.  Lazyload library let's us show the low-quality versions of the images while the full image (That is also compressed) is being loaded.
 
