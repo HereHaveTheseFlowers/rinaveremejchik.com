@@ -21,4 +21,4 @@ The website is deployed on https://rinav.site
 
 ## Installation
  1. `npm install`
- 2. `gulp`
+ 2. `npm run start`
