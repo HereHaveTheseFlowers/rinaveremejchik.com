@@ -27,6 +27,10 @@ function handleCampgaignSelectImage(event) {
             }
         }
         pressedImage.classList.add("campaign-image-selected");
+        pressedImage.parentNode.classList.add('pressed')
+        setTimeout(() =>  {
+            pressedImage.parentNode.classList.remove('pressed')
+        }, 200);
     }
 };
 
@@ -65,6 +69,10 @@ const handleCampgaignRight = (event) => {
             mainImage.dataset.srcset = `${targetSrc.replace('-icon', '-lowq')} 500w, ${targetSrc.replace('-icon', '')} 900w`;
             targetImage.classList.add("campaign-image-selected");
             siblingImage.classList.remove("campaign-image-selected");
+            pressedButton.classList.add('pressed')
+            setTimeout(() =>  {
+                pressedButton.classList.remove('pressed')
+            }, 200);
             return;
         }
     }
@@ -105,6 +113,10 @@ const handleCampgaignLeft = (event) => {
             mainImage.dataset.srcset = `${targetSrc.replace('-icon', '-lowq')} 500w, ${targetSrc.replace('-icon', '')} 900w`;
             targetImage.classList.add("campaign-image-selected");
             siblingImage.classList.remove("campaign-image-selected");
+            pressedButton.classList.add('pressed')
+            setTimeout(() =>  {
+                pressedButton.classList.remove('pressed')
+            }, 200);
             return;
         }
     }

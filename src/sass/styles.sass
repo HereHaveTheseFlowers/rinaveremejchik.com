@@ -250,10 +250,14 @@ section.slider
         //height: 100%
         @media (max-width : 576px)
           height: 100%
+          align-content: flex-start
         div
           display        : flex
           justify-content: center
           height: 90%
+          @media (max-width : 576px)
+            height: 70%
+            margin-top: 3vh
       div.row-email
         margin-bottom: 20px
         @media (max-width : 576px)
@@ -262,7 +266,7 @@ section.slider
       div.row-instagram
         @media (max-width : 576px)
           height: 20%
-          margin-bottom: 100px
+          margin-bottom: 30px
     .swipe-panel
       position: absolute
       bottom: 10px
