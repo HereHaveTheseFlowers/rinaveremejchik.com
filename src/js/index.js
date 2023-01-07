@@ -215,7 +215,6 @@ $('div#zoomed-svg-mobile').on('click', function () {
 	if(zoom === 1) zoom = 1.48;
 	else zoom = 1;
 	image_zoom.css('transform', `scale(${(zoom)})`);
-	console.log('hiii')
 });
 
 $("img.zoomed-cross").click(function(){

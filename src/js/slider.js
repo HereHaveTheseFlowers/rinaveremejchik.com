@@ -69,6 +69,19 @@ function goToNextSlide() {
     });
     slide_about_position -= 50;
     slide_about.style.transform = `translateX(${slide_about_position}%)`;
+    if(curSlide === slides.length * 2 + 1) {
+        $(".swipe-about").addClass("active");
+        $(".swipe-contact").removeClass("active");
+        $(".swipe-works").removeClass("active");
+    } else if(curSlide === slides.length * 2 - 1) {
+        $(".swipe-contact").addClass("active");
+        $(".swipe-works").removeClass("active");
+        $(".swipe-about").removeClass("active");
+    } else {
+        $(".swipe-works").addClass("active");
+        $(".swipe-contact").removeClass("active");
+        $(".swipe-about").removeClass("active");
+    }
 }
 
 function goToPrevSlide() {
@@ -90,6 +103,19 @@ function goToPrevSlide() {
     });
     slide_about_position += 50;
     slide_about.style.transform = `translateX(${slide_about_position}%)`;
+    if(curSlide === slides.length * 2 + 1) {
+        $(".swipe-about").addClass("active");
+        $(".swipe-contact").removeClass("active");
+        $(".swipe-works").removeClass("active");
+    } else if(curSlide === slides.length * 2 - 1) {
+        $(".swipe-contact").addClass("active");
+        $(".swipe-works").removeClass("active");
+        $(".swipe-about").removeClass("active");
+    } else {
+        $(".swipe-works").addClass("active");
+        $(".swipe-contact").removeClass("active");
+        $(".swipe-about").removeClass("active");
+    }
 }
 // add event listener and navigation functionality
 nextSlide.on("click", function () {

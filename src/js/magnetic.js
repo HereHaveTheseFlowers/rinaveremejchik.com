@@ -1,12 +1,17 @@
 
-for(let i = 1; i <= 20; i++) {
-    const magneticList = document.querySelectorAll('.magnetic' + i);
-    magneticList.forEach(function(elem){
-      $(document).on('mousemove touch', function(e){
-        magnetize(elem, e, i/100);
-      });
-    })
+function setupMagnetic() {
+    for(let i = 1; i <= 20; i++) {
+        const isMobileDevice = $(window).width() <= 480;
+        if(isMobileDevice) return;
+        const magneticList = document.querySelectorAll('.magnetic' + i);
+        magneticList.forEach(function(elem){
+          $(document).on('mousemove touch', function(e){
+            magnetize(elem, e, i/100);
+          });
+        })
+    }
 }
+setupMagnetic() 
 
 function magnetize(el, e, magnetOffset) {
     if(window.screen.width <= 576)

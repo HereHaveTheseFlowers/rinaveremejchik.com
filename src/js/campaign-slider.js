@@ -41,12 +41,10 @@ const handleCampgaignRight = (event) => {
     if(pressedElement.nodeName != "BUTTON") {
         pressedButton = pressedButton.closest("button")
     }
-    console.log(pressedButton)
     const siblings  = pressedButton.parentNode.children;
     
     for(const sibling of siblings) {
         const siblingImage = sibling.firstChild;
-        console.log(siblings)
         if(!siblingImage) return;
         if(siblingImage.classList.contains("campaign-image-selected")) {
             if(!sibling.nextElementSibling) return;
@@ -85,12 +83,10 @@ const handleCampgaignLeft = (event) => {
     if(pressedElement.nodeName != "BUTTON") {
         pressedButton = pressedButton.closest("button")
     }
-    console.log(pressedButton)
     const siblings  = pressedButton.parentNode.children;
     
     for(const sibling of siblings) {
         const siblingImage = sibling.firstChild;
-        console.log(siblings)
         if(!siblingImage) return;
         if(siblingImage.classList.contains("campaign-image-selected")) {
             if(!sibling.previousElementSibling) return;
