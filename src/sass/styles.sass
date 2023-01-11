@@ -381,17 +381,21 @@ div#zoomed-svg-mobile
   width: 30vw
   height: 20%
   bottom: 5vh
-  gap: 10px
   justify-content: center
   @media (max-width : 576px)
     height: 60% !important
     width: 75vw
+  div
+    display: flex !important
+    height: auto !important
+    margin-top: 0 !important
+    gap: 10px !important
   img
     width: 7vw
     object-fit: contain
     @media (max-width : 576px)
       width: 17vw
-  img:last-child
+  img.belissima
     width: 14vw
     @media (max-width : 576px)
       width: 24vw
