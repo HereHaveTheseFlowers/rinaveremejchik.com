@@ -64,6 +64,7 @@ email_button.click(function(){
 		document.body.appendChild(circle);
 	}
 	dont_show_hint = true;
+	$(".clickme-svg").css('opacity', '0');
 	cursorshape.removeClass(" show_hint_copy");
 	cursortext.removeClass(" show_hint_copy");
 	setTimeout(() =>  {

@@ -91,19 +91,34 @@
 .hidden
     display: none !important
 
-button#email_button
+#email_button
     border     : 0
     background : rgb(0, 0, 0, 0)
     transition : 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform
     height: 100%
     padding-bottom: 0.3em
+    position: relative
+    @media (max-width : 576px)
+        user-select: text
+
+.clickme-svg
+    display: none
+    position: absolute
+    object-fit: contain
+    bottom: 0px
+    right: 60px
+    height: 30px
+    opacity: 0.8
+    transition: 0.3s opacity
+    @media (max-width : 576px)
+        display: block
 
 span.email_text
     font-size  : 2vw
     font-weight: 600
     color: $color_text
-    user-select: none
     @media (max-width : 576px)
+        user-select: text
         font-size: 4vw
 
 div#copied_hint
