@@ -400,4 +400,29 @@ div#zoomed-svg-mobile
     @media (max-width : 576px)
       width: 24vw
     
-  
+.loadingimage-div
+  margin: 0 !important
+  opacity: 0
+  position: absolute
+  height: 100% !important
+  width: 100% !important
+  display: flex
+  justify-content: center
+  align-items: center
+  pointer-events: none
+  transition: 0.2s opacity
+
+.loadingimage-svg
+  position: absolute
+  object-fit: contain
+  height: 30px
+  width: 30px
+  opacity: $opacity_cursor
+  fill: $color_cursor
+  animation: spin 1s linear infinite
+
+@keyframes spin
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)

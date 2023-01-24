@@ -7,7 +7,10 @@ function handleCampgaignSelectImage(event) {
     if(targetSrc && !pressedImage.classList.contains("campaign-image-selected")) {
         const mainImage = pressedImage.closest('.campaign-panel').previousElementSibling.firstChild.firstChild;
         if(!mainImage) return;
+        const loadingimage = mainImage.nextElementSibling;
+        if(loadingimage) loadingimage.style.opacity = '1';
         mainImage.onload = () => {
+            if(loadingimage) loadingimage.style.opacity = '0';
             if(targetSrc.includes('landscape')) {
                 mainImage.parentNode.className = "col-md-10 offset-md-1";
             } else {
@@ -54,7 +57,10 @@ const handleCampgaignRight = (event) => {
             if(!targetSrc) return;
             const mainImage = sibling.closest('.campaign-panel').previousElementSibling.firstChild.firstChild;
             if(!mainImage) return;
+            const loadingimage = mainImage.nextElementSibling;
+            if(loadingimage) loadingimage.style.opacity = '1';
             mainImage.onload = () => {
+                if(loadingimage) loadingimage.style.opacity = '0';
                 if(targetSrc.includes('landscape')) {
                     mainImage.parentNode.className = "col-md-10 offset-md-1";
                 } else {
@@ -96,7 +102,10 @@ const handleCampgaignLeft = (event) => {
             if(!targetSrc) return;
             const mainImage = sibling.closest('.campaign-panel').previousElementSibling.firstChild.firstChild;
             if(!mainImage) return;
+            const loadingimage = mainImage.nextElementSibling;
+            if(loadingimage) loadingimage.style.opacity = '1';
             mainImage.onload = () => {
+                if(loadingimage) loadingimage.style.opacity = '0';
                 if(targetSrc.includes('landscape')) {
                     mainImage.parentNode.className = "col-md-10 offset-md-1";
                 } else {
