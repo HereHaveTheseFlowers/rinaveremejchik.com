@@ -1,6 +1,6 @@
 
 
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
 	let loader = document.querySelector('.loader');
 	if(loader) {
 	  loader.style.opacity = '0';
