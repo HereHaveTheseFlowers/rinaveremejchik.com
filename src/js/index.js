@@ -12,6 +12,10 @@ window.addEventListener('DOMContentLoaded', () => {
 	loader = null;
   });
 
+$(".logo").on("click", function(e) {
+	window.location.reload();
+});
+
 //  mouse position 
 
 const currentMousePos = { x: -1, y: -1 };

@@ -25,8 +25,15 @@
     transition      : 0.3s cubic-bezier(0.75, 0.5, 0.3, 2.33) transform, 0.3s cubic-bezier(0.75, 0.5, 0.8, 0.9) opacity
 
 #cursor-shape.show_hint_button
-    transform: scale(1.8)
+    animation: showhintbutton 0.3s linear 1
     opacity: $opacity_cursor
+    transform: scale(2)
+
+@keyframes showhintbutton
+    40%
+        opacity: 0.1
+    75%
+        opacity: 0.1
 
 #cursor-shape.show_drag
     transition: 0.2s all

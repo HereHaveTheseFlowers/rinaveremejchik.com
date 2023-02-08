@@ -25,6 +25,14 @@ $("svg.slider-prev").on("mouseleave", function() {
 	cursorshape.removeClass(" show_hint_button");
 });
 
+$(".logo").on("mouseenter", function() {
+	cursorshape.addClass(" show_hint_button");
+});
+
+$(".logo").on("mouseleave", function() {
+	cursorshape.removeClass(" show_hint_button");
+});
+
 $("svg.slider-next").on("mouseenter", function() {
 	cursorshape.addClass(" show_hint_button");
 });
