@@ -10,16 +10,16 @@ const campaign_images = document.querySelectorAll('.campaign-image')
 const slidesreversed = [];
 let i = maxSlide;
 let slidesposition = [];
-let slide_about_position = 100;
+let slide_about_position = 400;
 slide_about.style.transform = `translateX(${slide_about_position}%)`;
 while(i >= 0) {
     slidesreversed.push(slides[i])
-    slidesposition.push(-100 * (i))
+    slidesposition.push(100 * (i))
     i--
 }
 // loop through slides and set each slides translateX property to index * -100% 
 slidesreversed.forEach((slide, indx) => {
-    slide.style.transform = `translateX(${indx * -100}%)`;
+    slide.style.transform = `translateX(${indx * 100}%)`;
 });
 // 0, -100, -200, etc.
 // so the slides list looks like: -200, -100, 0
@@ -34,7 +34,7 @@ const prevSlidesvg = $("svg.slider-prev");
 const svgTransform = 0.6
 
 // current slide counter
-let curSlide = slides.length * 2 - 1; // starting at the pre-last slide
+let curSlide = 1; // starting at the pre-last slide
 
 function goToNSlide(n) {
     while(curSlide < n) {
@@ -73,7 +73,7 @@ function goToNextSlide() {
         $(".swipe-about").addClass("active");
         $(".swipe-contact").removeClass("active");
         $(".swipe-works").removeClass("active");
-    } else if(curSlide === slides.length * 2 - 1) {
+    } else if(curSlide <= 2) {
         $(".swipe-contact").addClass("active");
         $(".swipe-works").removeClass("active");
         $(".swipe-about").removeClass("active");
@@ -107,7 +107,7 @@ function goToPrevSlide() {
         $(".swipe-about").addClass("active");
         $(".swipe-contact").removeClass("active");
         $(".swipe-works").removeClass("active");
-    } else if(curSlide === slides.length * 2 - 1) {
+    } else if(curSlide <= 2) {
         $(".swipe-contact").addClass("active");
         $(".swipe-works").removeClass("active");
         $(".swipe-about").removeClass("active");
@@ -195,7 +195,7 @@ $(".swipe-contact").on("click", function () {
     setTimeout(() =>  {
         this.style.transform = 'scale(1)';
     }, 200);
-    goToNSlide(slides.length * 2 - 1);
+    goToNSlide(1);
 });
 
 $(".swipe-works").on("click", function () {
@@ -204,7 +204,7 @@ $(".swipe-works").on("click", function () {
     setTimeout(() =>  {
         this.style.transform = 'scale(1)';
     }, 200);
-    goToNSlide(slides.length * 2 - 3);
+    goToNSlide(3);
 });
 
 $( "body" ).keydown(function(e) {
