@@ -63,7 +63,6 @@ gulp.task('js', function() {
     return gulp.src("src/js/**/*.js")
         .pipe(cache('js'))
         .pipe(jsmin())
-        .pipe(rename({suffix: '.min'}))
         .pipe(gulp.dest("dist/js/"));
 });
 
