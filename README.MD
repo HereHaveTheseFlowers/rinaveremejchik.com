@@ -11,9 +11,9 @@ The website is also responsive and all of the features are mobile-friendly.
 
 ## Deploy
 
-The website is deployed on http://rinaveremejchik.com
+The website is deployed on https://rinaveremejchik.com
 
-<a href="http://rinaveremejchik.com/" target="_blank" rel="noopener noreferrer">
+<a href="https://rinaveremejchik.com/" target="_blank" rel="noopener noreferrer">
 
 ![Google Chrome - Light](https://user-images.githubusercontent.com/106176669/198884542-0bf5206a-116b-4786-9d7e-ca54a26a3d1d.png)
 
