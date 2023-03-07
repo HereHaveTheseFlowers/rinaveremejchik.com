@@ -3,11 +3,6 @@
   <a href="https://github.com/herehavetheseflowers/rinaveremejchik.com/blob/main/README.ru.md">Русский</a>
 </p>
 
-## 🌐 Deploy
-
-https://rinaveremejchik.com
-
-
 ## ⚙️ About
 This is an elegant, minimal portfolio website for a professional high-end retoucher.
 
@@ -19,7 +14,11 @@ SVG is being used throughout the project so user experience feels more smooth. I
 
 The website is also responsive and all of the features are mobile-friendly.
 
-<a href="http://rinaveremejchik.com/" target="_blank" rel="noopener noreferrer">
+## 🌐 Deploy
+
+The website is deployed on https://rinaveremejchik.com
+
+<a href="https://rinaveremejchik.com/" target="_blank" rel="noopener noreferrer">
 
 ![Google Chrome - Light](https://user-images.githubusercontent.com/106176669/198884542-0bf5206a-116b-4786-9d7e-ca54a26a3d1d.png)
 
