@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://github.com/herehavetheseflowers/rinaveremejchik.com/blob/main/README.md">English</a> |
+  <a href="https://github.com/HereHaveTheseFlowers/rinaveremejchik.com/blob/main/README.MD">English</a> |
   <span>Русский</span>
 </p>
 

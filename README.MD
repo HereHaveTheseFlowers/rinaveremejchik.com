@@ -1,6 +1,6 @@
 <p align="center">
   <span>English</span> |
-  <a href="https://github.com/herehavetheseflowers/rinaveremejchik.com/blob/main/README.ru.md">Русский</a>
+  <a href="https://github.com/HereHaveTheseFlowers/rinaveremejchik.com/blob/main/README.ru.MD">Русский</a>
 </p>
 
 ## ⚙️ About
