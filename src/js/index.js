@@ -1,5 +1,3 @@
-
-
 window.addEventListener('DOMContentLoaded', () => {
 	let loader = document.querySelector('.loader');
 	if(loader) {
@@ -164,6 +162,8 @@ $(".zoomable").on('click', function () {
 	}
 	if($(this).attr("src").includes("has3x2")) {
 		newsrc = this.src.replace('-min', '').replace('-icon', '').replace('-lowq', '').replace('.jpg', '-3x2.jpg');
+	} else if($(this).attr("src").includes("hasFull")) {
+		newsrc = this.src.replace('-min', '').replace('-icon', '').replace('-lowq', '').replace('.jpg', '-full.jpg');
 	} else {
 		newsrc = this.src.replace('-min', '').replace('-icon', '').replace('-lowq', '');
 	}

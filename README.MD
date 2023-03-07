@@ -1,4 +1,14 @@
-## About
+<p align="center">
+  <span>English</span> |
+  <a href="https://github.com/herehavetheseflowers/rinaveremejchik.com/blob/main/README.ru.md">Русский</a>
+</p>
+
+## 🌐 Deploy
+
+https://rinaveremejchik.com
+
+
+## ⚙️ About
 This is an elegant, minimal portfolio website for a professional high-end retoucher.
 
 The main point of the site is to display high-quality images to the potential clients. Therefore, our biggest concern is loading time increased by the size of the pictures.  Lazyload library let's us show the low-quality versions of the images while the full image (That is also compressed) is being loaded.
@@ -9,16 +19,12 @@ SVG is being used throughout the project so user experience feels more smooth. I
 
 The website is also responsive and all of the features are mobile-friendly.
 
-## Deploy
-
-The website is deployed on http://rinaveremejchik.com
-
 <a href="http://rinaveremejchik.com/" target="_blank" rel="noopener noreferrer">
 
 ![Google Chrome - Light](https://user-images.githubusercontent.com/106176669/198884542-0bf5206a-116b-4786-9d7e-ca54a26a3d1d.png)
 
 </a>
 
-## Installation
+## 📜 Installation
  1. `npm install`
  2. `npm run start`
