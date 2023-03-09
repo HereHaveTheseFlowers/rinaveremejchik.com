@@ -27,3 +27,7 @@ The website is deployed on https://rinaveremejchik.com
 ## 📜 Installation
  1. `npm install`
  2. `npm run start`
+
+## Future Plans
+
+Moving whole project to React.js
