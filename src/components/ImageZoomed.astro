@@ -1,0 +1,363 @@
+<div class="image-zoomed">
+    <div class="draggable" id="div-zoomed">
+        <img alt="zoomed image" class="image-zoomed lazyload blur-up" draggable="false">
+    </div>
+    <img src="./svg/CROSS.svg" alt="close" class="zoomed-cross">
+    <!-- Control buttons -->
+    <div class="slider-button slider-prev" id="slider-button-zoomed-left">
+        <svg viewBox="0 0 120 185" width="50" height="50" class="slider-prev">
+            <use xlink:href="#slider-button-svg"/>
+        </svg>
+    </div>
+    <div id="zoomed-svg-mobile">
+        <svg viewBox="0 0 300 300 " id="zoomed-svg-mobile">
+            <path d="M112.87 25A87.86 87.86 0 0 1 175 175 87.87 87.87 0 0 1 50.74 50.73 87.3 87.3 0 0 1 112.87 25m0-25a112.87 112.87 0 1 0 79.81 33.06A112.51 112.51 0 0 0 112.87 0Z"/>
+            <path d="m254.1 277-74.27-73.84 23.34-23.33L278 254s11.5 12.5.95 23c-11.45 11.5-24.85 0-24.85 0ZM164 124.15s11 0 11-11.29-11-11.28-11-11.28H63s-12 .55-12 11.42c0 11.13 12 11.15 12 11.15Z"/>
+            <path d="M124.16 161s0 13-11.29 13-11.29-13-11.29-13V64.49s0-12.9 11.28-12.9 11.3 12.9 11.3 12.9Z"/>
+        </svg>
+    </div>
+    <div class="slider-button slider-next" id="slider-button-zoomed-right">
+        <svg viewBox="0 0 120 185" width="50" height="50" class="slider-next active">
+            <use xlink:href="#slider-button-svg"/>
+        </svg>
+    </div>
+</div>
+
+
+<style lang="sass">
+    div.image-zoomed
+        background: rgba(255, 255, 255, 0.75)
+        position: fixed
+        user-select: none
+        display: none
+        top: 0
+        left: 0
+        justify-content: center
+        align-items    : center
+        height: 100%
+        width: 100vw
+        opacity: 0
+        img.zoomed-cross
+            transition: 0.3s cubic-bezier(0.75, -1.27, 0.3, 2.33) transform
+            position: absolute
+            opacity: 0.4
+            height: 5%
+            top: 10px
+            right: 10px
+
+        div#div-zoomed
+            user-select: all
+            height: 100%
+        img.image-zoomed
+            height: 100%
+            width: 100%
+            object-fit: contain
+            user-drag: none
+            user-select: none
+
+    div.image-zoomed.is-visible
+        animation: fadeInFromNone 0.5s ease-in-out
+        animation-fill-mode: forwards
+        opacity: 1
+        display: flex
+
+    div.image-zoomed.is-hidden
+        animation: fadeOutFromBlock 0.5s ease-in-out
+
+    main
+        transition: filter 0.8s
+    header
+        transition: filter 0.8s
+
+    @keyframes fadeInFromNone
+        0%
+            opacity: 0
+        100%
+            opacity: 1
+
+    @keyframes fadeOutFromBlock
+        0%
+            display: flex
+            opacity: 1
+        100%
+            display: flex
+            opacity: 0
+        100%
+            display: none
+            opacity: 0
+
+    .blur-up
+        -webkit-filter: blur(5px)
+        filter: blur(5px)
+        transition: filter 1500ms, -webkit-filter 1500ms
+    .blur-up.lazyloaded
+        -webkit-filter: blur(0)
+        filter: blur(0)
+
+</style>
+
+<style is:global lang="sass">
+    #image-notice
+        position: absolute
+        z-index: 50
+        padding: 8px 8px
+        font-size: 10px
+        border-radius: 4px
+        background: #fff
+        box-shadow: 0 0 5px #222
+        opacity: 0.7
+        transition: all 0.4s
+        animation: 0.5s image-notice
+
+    @keyframes image-notice
+        from
+            transform: scale(0)    
+            transform-origin: top left
+        to
+            transform: scale(1)
+            transform-origin: top left
+
+</style>
+
+
+<script>
+    import $ from 'jquery';
+
+    const cursorshape = $("#cursor-shape");
+    const cursorzoom = $("#cursor-zoom");
+    const cursortext = $("#cursor-text");
+
+    
+    // Context menu rewrite
+
+    const currentMousePos = { x: -1, y: -1 };
+
+    $(document).on("mousemove", function(e) {
+        currentMousePos.x = e.pageX;
+        currentMousePos.y = e.pageY;
+    });
+
+    let listofnotices = [];
+
+    $("img").contextmenu(function() {
+        // deleting all the past created notices
+        for(let notice of listofnotices) {
+            notice.style.opacity = 0;
+            notice.style.transform = 'scale(0.9)';
+            setTimeout(() =>  {
+                notice.remove();
+            }, 500);
+        }
+        // creating a new notice based on image's alt property
+        const imagenotice = document.createElement(`div`);
+        listofnotices.push(imagenotice);
+        imagenotice.id = `image-notice`;
+        imagenotice.innerHTML = this.alt;
+        // calculating the position based on the cursor position
+        imagenotice.style.top = `calc(${currentMousePos.y}px )`;
+        imagenotice.style.left = `calc(${currentMousePos.x}px)`;
+        // adding notice to the body
+        document.body.appendChild(imagenotice);
+        // tracking are we hovering on the element so we can decide should we delete it when clicking
+        $(imagenotice).hover(
+            function() { $.data(this, 'hover', true); },
+            function() { $.data(this, 'hover', false); }
+        ).data('hover', false);
+        // not letting the browser open the context menu!
+        return false;
+    });
+    $('html').on('click', function () { 
+        // deleting all the notices we're not hovering on right now
+        for(let notice of listofnotices) {
+            if(!$(notice).data('hover')) {
+                notice.style.opacity = 0;
+                notice.style.transform = 'scale(0.9)';
+                setTimeout(() =>  {
+                    notice.remove();
+                    $(notice).data('hover', false);
+                }, 500);
+            }
+        }
+    });
+        
+    // DISABLING SCROLLING FUNC
+    // left: 37, up: 38, right: 39, down: 40,
+    // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+    const keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+    function preventDefault(e) {
+        e.preventDefault();
+    }
+
+    function preventDefaultForScrollKeys(e) {
+        if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
+        }
+    }
+
+    // modern Chrome requires { passive: false } when adding event
+    let supportsPassive = false;
+    try {
+        window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+            get: function () { supportsPassive = true; } 
+        }));
+    } catch(e) {}
+
+    const wheelOpt = supportsPassive ? { passive: false } : false;
+    let wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+    // call this to Disable
+    function disableScroll() {
+        window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+        window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+        window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+        window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+    }
+
+    // call this to Enable
+    function enableScroll() {
+        window.removeEventListener('DOMMouseScroll', preventDefault, false);
+        window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
+        window.removeEventListener('touchmove', preventDefault, wheelOpt);
+        window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+    }
+
+    // IMAGE ZOOM
+
+    let zoom = 1;
+    const zoomingSpeed = 0.04;
+    const image_zoom = $("img.image-zoomed");
+    const div_zoom = $("div.image-zoomed");
+    let canopen = true;
+    const open_time = 800;
+    let canclose = false;
+    const close_time = 500;
+    $(".zoomable").on('click', function () { 
+        if(!canopen) return;
+        cursorshape.removeClass(" show_hint_zoom");
+        cursorzoom.removeClass(" show_hint_zoom");
+        disableScroll();
+        zoom = 1;
+        let newImage = new Image;
+        let newsrc = '';
+        $('#loading').css('display', 'flex');
+        cursorshape.addClass(" hidden");
+        cursorzoom.addClass(" hidden");
+        cursortext.addClass(" hidden");
+        newImage.onload = function() {
+            $('#loading').css('display', 'none');
+            cursorshape.removeClass(" hidden");
+            cursorzoom.removeClass(" hidden");
+            cursortext.removeClass(" hidden");
+            image_zoom.attr('src', (newsrc));
+            div_zoom.css('display', 'flex');
+            div_zoom.removeClass('is-hidden');
+            div_zoom.addClass('is-visible');
+            $("main").css('filter', 'blur(10px)');
+            $("header").css('filter', 'blur(8px)');
+            setTimeout(() =>  {
+                canopen = true;
+            }, open_time);
+            setTimeout(() =>  {
+                canclose = true;
+            }, close_time);
+        }
+        if($(this).attr("src").includes("has3x2")) {
+            newsrc = this.src.replace('-min', '').replace('-icon', '').replace('-lowq', '').replace('.jpg', '-3x2.jpg');
+        } else if($(this).attr("src").includes("hasFull")) {
+            newsrc = this.src.replace('-min', '').replace('-icon', '').replace('-lowq', '').replace('.jpg', '-full.jpg');
+        } else {
+            newsrc = this.src.replace('-min', '').replace('-icon', '').replace('-lowq', '');
+        }
+        canopen = false;
+        canclose = false;
+        newImage.src = newsrc;
+        image_zoom.attr('alt', this.alt);
+        $(image_zoom).hover(
+            function() { $.data(this, 'hover', true); },
+            function() { $.data(this, 'hover', false); }
+        ).data('hover', false);
+        $('#slider-button-zoomed-left').hover(
+            function() { $.data(this, 'hover', true); },
+            function() { $.data(this, 'hover', false); }
+        ).data('hover', false);
+        $('#slider-button-zoomed-right').hover(
+            function() { $.data(this, 'hover', true); },
+            function() { $.data(this, 'hover', false); }
+        ).data('hover', false);
+        $('svg#zoomed-svg-mobile').hover(
+            function() { $.data(this, 'hover', true); },
+            function() { $.data(this, 'hover', false); }
+        ).data('hover', false);
+    });
+    $('html').on('click', function () { 
+        let noticehover = false;
+        for(let notice of listofnotices)
+            if($(notice).data('hover')) noticehover = true;
+        if(canclose && !noticehover && !$(image_zoom).data('hover') && !$('#slider-button-zoomed-right').data('hover') && !$('#slider-button-zoomed-left').data('hover') && !$('svg#zoomed-svg-mobile').data('hover')) {
+            div_zoom.addClass('is-hidden');
+            $("main").css('filter', 'none');
+            $("header").css('filter', 'none');
+            enableScroll();
+            setTimeout(() =>  {
+                $("main").css('filter', 'none');
+                $("header").css('filter', 'none');
+                div_zoom.css('display', 'none');
+                div_zoom.addClass('is-hidden');
+                div_zoom.removeClass('is-visible');
+                image_zoom.attr('src', '');
+                $('#div-zoomed').css('left', '0');
+                $('#div-zoomed').css('top', '0');
+                zoom = 1;
+                image_zoom.css('transform', `scale(${(zoom)})`);
+            }, 500);
+        }
+    });
+    // for mobile
+    $('div#zoomed-svg-mobile').on('click', function () {
+        $('svg#zoomed-svg-mobile').css('transform', 'scale(0.86)')
+        setTimeout(() =>  {
+            $('svg#zoomed-svg-mobile').css('transform', 'scale(1)')
+        }, 200);
+        if(zoom === 1) zoom = 1.48;
+        else zoom = 1;
+        image_zoom.css('transform', `scale(${(zoom)})`);
+    });
+
+    $("img.zoomed-cross").click(function(){
+        $('img.zoomed-cross').css('transform', 'scale(0.86)')
+        setTimeout(() =>  {
+            $('img.zoomed-cross').css('transform', 'scale(1)')
+        }, 200);
+    });
+
+    document.addEventListener("wheel", (e)=> {
+        if(div_zoom.css('display') === 'flex' && zoom >= 1 && zoom <= 1.5) {
+            if(e.deltaY > 0 && zoom >= 1 + zoomingSpeed) {
+                zoom -= zoomingSpeed;
+                image_zoom.css('transform', `scale(${(zoom)})`);
+            }
+            else if(e.deltaY <= 0 && zoom <= 1.5 - zoomingSpeed) {
+                zoom += zoomingSpeed;
+                image_zoom.css('transform', `scale(${(zoom)})`);
+            }
+        }
+    })
+
+    
+    /// dragging the image
+
+   /*  const $draggable = $('.draggable').draggabilly({
+        // options...
+    });
+    $draggable.on( 'dragMove', function(pointer) { 
+        xTo(pointer.pageX);
+        yTo(pointer.pageY - document.documentElement.scrollTop);
+        //if( Number($('#div-zoomed').css('top').match(/\d+/)[0]) < 0) $draggable.draggabilly('dragEnd')
+    })
+    $draggable.on( 'dragStart', () => { cursorshape.addClass("show_drag") })
+    $draggable.on( 'dragEnd', () => { cursorshape.removeClass("show_drag") })
+ */
+
+</script>

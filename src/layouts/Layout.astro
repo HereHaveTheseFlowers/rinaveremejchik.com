@@ -1,0 +1,72 @@
+---
+import '../styles/global.sass';
+import Header from '../components/Header.astro';
+import CursorFollower from '../components/CursorFollower.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rina Veremejchik</title>
+	<meta name="description" content="Post production artist & high-end retoucher portfolio" />
+    <meta name="keywords" content="retouch, retoucher, retoucher portfolio, retouching, post-production, photography, post production, high-end" />
+    <meta name="author" content="Rina Veremejchik" />
+	
+    <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#1c1d20">
+    <meta name="msapplication-TileColor" content="#da532c" />
+    <meta name="theme-color" content="#ffffff" />
+	
+    <style>
+        .loader {
+            z-index: 9999;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            display: grid;
+            place-items: center;
+            opacity: 1;
+            transition: opacity 0.2s linear;
+        }
+
+        .loader__circle {
+            border: 16px solid #e3e3e3;
+            border-top: 16px solid rgb(80, 80, 80);
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            animation: spin 1s linear infinite;
+            font-size: 50px;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+  </head>
+  <body>
+    <div class="loader"><span class="loader__circle"></span></div>
+	<Header />
+	<slot />
+    <CursorFollower />
+    <script src="./utils/modernizr-custom.js" is:inline/>
+    <script src="../utils/modernizr-check.js" />
+    <script src="./Layout.ts" />
+  </body>
+</html>
+

@@ -1,0 +1,195 @@
+<div id="cursor-follower">
+    <div id="cursor-shape"></div>
+    <div id="loading"><div id="spinner"></div></div>
+    <div id="cursor-zoom">
+        <svg viewBox="0 0 300 300 " id="zoom-svg">
+            <path d="M112.87 25A87.86 87.86 0 0 1 175 175 87.87 87.87 0 0 1 50.74 50.73 87.3 87.3 0 0 1 112.87 25m0-25a112.87 112.87 0 1 0 79.81 33.06A112.51 112.51 0 0 0 112.87 0Z"/>
+            <path d="m254.1 277-74.27-73.84 23.34-23.33L278 254s11.5 12.5.95 23c-11.45 11.5-24.85 0-24.85 0ZM164 124.15s11 0 11-11.29-11-11.28-11-11.28H63s-12 .55-12 11.42c0 11.13 12 11.15 12 11.15Z"/>
+            <path d="M124.16 161s0 13-11.29 13-11.29-13-11.29-13V64.49s0-12.9 11.28-12.9 11.3 12.9 11.3 12.9Z"/>
+        </svg>
+        <img alt="zoom tool" id="zoom-svg-fallback">
+    </div>
+    <div id="cursor-text">
+        Click<br>To Copy
+    </div>
+</div>
+
+
+<style lang="sass">
+    @import '../styles/vars'
+
+    #cursor-follower
+        top            : 0 
+        left           : 0
+        position       : fixed
+        display        : flex
+        opacity        : 0
+        justify-content: center
+        align-items    : center
+        width          : 40px
+        height         : 40px
+        z-index        : 80
+        user-select    : none
+        pointer-events : none
+        transition: 0.3s opacity
+        @media (max-width : 576px)
+            display: none
+
+    #cursor-shape
+        background-color: $color_cursor
+        width           : 30%
+        height          : 30%
+        border-radius   : 100%
+        opacity         : 0.9
+        transition      : 0.3s cubic-bezier(0.75, 0.5, 0.3, 2.33) transform, 0.3s cubic-bezier(0.75, 0.5, 0.8, 0.9) opacity
+
+    #cursor-shape.show_hint_button
+        animation: showhintbutton 0.3s linear 1
+        opacity: $opacity_cursor
+        transform: scale(2)
+
+    @keyframes showhintbutton
+        40%
+            opacity: 0.1
+        75%
+            opacity: 0.1
+
+    #cursor-shape.show_drag
+        transition: 0.2s all
+        transform: scale(0.6)
+
+    #cursor-shape.show_hint_copy
+        opacity  : $opacity_cursor
+        transform: scale(9)
+        
+    #cursor-shape.show_hint_zoom
+        opacity  : $opacity_cursor
+        transition      : 0.2s  transform, 0.2s cubic-bezier(0.75, 0.5, 0.8, 0.9) opacity
+        transform: scale(0)
+
+    #loading
+        width: 100%
+        max-width: 400px
+        height: auto
+        justify-content: center
+        display: none
+        position: absolute
+
+    #spinner
+        fill: none
+        stroke: $color_cursor
+        opacity  : $opacity_cursor
+        stroke-width: 8
+
+    #cursor-zoom
+        height    : 80%
+        fill      : $color_cursor
+        stroke    : $color_cursor
+        width     : 80%
+        opacity   : 0
+        position  : absolute
+        transform : scale(0)
+        transition: 0.2s cubic-bezier(0.75, 0.5, 0.8, 1.8) transform, 0.2s opacity
+
+    #cursor-zoom.show_hint_zoom
+        opacity  : $opacity_cursor
+        transform: scale(1.3)
+
+    #zoom-svg-fallback
+        display: none
+        height    : 80%
+        width     : 80%
+
+    #cursor-text
+        position   : absolute
+        opacity    : 0
+        width      : 100%
+        color      : white
+        font-size  : 10px
+        font-weight: 500
+        text-align : center
+        transition : 0.3s cubic-bezier(0.75, 0.5, 0.3, 2.33) transform, 0.3s cubic-bezier(0.75, 0.5, 0.3, 2.33) opacity
+
+    #cursor-text.show_hint_copy
+        opacity  : 1
+        transform: scale(2)
+
+
+</style>
+
+<script>
+    import gsap from 'gsap'
+    import delegate from '../utils/delegate';
+    import $ from "jquery";
+
+    //@ts-ignore
+    import { Lines } from 'https://unpkg.com/@small-tech/spinners@1.0.0/dist/index.mjs';
+    
+    const lines = new Lines({
+        target: document.getElementById('spinner'),
+        props: {
+            size: '2em',
+            colour: '#75b2c9'
+        }
+    })
+
+    /// CURSOR REPLACEMENT
+
+    let follower = document.querySelector("#cursor-follower") as HTMLElement;
+    const cursorshape = $("#cursor-shape");
+    const cursortext =  $("#cursor-text");
+    const cursorzoom = $("#cursor-zoom");
+    let dont_show_hint = false;
+
+    gsap.set(follower, {xPercent: -50, yPercent: -50});
+
+    let xTo = gsap.quickTo(follower, "x", {duration: 0.1, ease: "power3"}),
+        yTo = gsap.quickTo(follower, "y", {duration: 0.1, ease: "power3"});
+
+    window.addEventListener("mousemove", e => {
+        follower.style.opacity = '1';
+        xTo(e.clientX);
+        yTo(e.clientY);
+    });
+
+    delegate("a", "mouseenter",  () => cursorshape.addClass("show_hint_button"));
+    delegate("a", "mouseleave",  () => cursorshape.removeClass("show_hint_button"));
+    delegate("button", "mouseenter",  () => cursorshape.addClass("show_hint_button"));
+    delegate("button", "mouseleave",  () => cursorshape.removeClass("show_hint_button"));
+
+    delegate("svg.slider-prev", "mouseenter", () => cursorshape.addClass("show_hint_button"));
+    delegate("svg.slider-prev", "mouseleave",  () => cursorshape.removeClass("show_hint_button"));
+
+    delegate(".logo", "mouseenter",  () => cursorshape.addClass("show_hint_button"));
+    delegate(".logo", "mouseleave",  () => cursorshape.removeClass("show_hint_button"));
+
+    delegate("svg.slider-next", "mouseenter",  () => cursorshape.addClass("show_hint_button"));
+    delegate("svg.slider-next", "mouseleave",  () => cursorshape.removeClass("show_hint_button"));
+
+    delegate("#buttontext", "mouseenter",  () => cursorshape.addClass("show_hint_button"));
+    delegate("#buttontext", "mouseleave",  () => cursorshape.removeClass("show_hint_button"));
+
+    delegate(".link-instagram", "mouseenter",  () => cursorshape.addClass("show_hint_button"));
+    delegate(".link-instagram", "mouseleave",  () => cursorshape.removeClass("show_hint_button"));
+
+    delegate(".cursor-hover", "mouseenter",  () => {
+        if(dont_show_hint) return;
+        cursorshape.addClass("show_hint_copy");
+        cursortext.addClass("show_hint_copy");
+    });
+    delegate(".cursor-hover", "mouseleave",  () => {
+        cursorshape.removeClass("show_hint_copy");
+        cursortext.removeClass("show_hint_copy");
+    });
+
+    delegate(".zoomable", "mouseenter",  () => {
+        cursorshape.addClass("show_hint_zoom");
+        cursorzoom.addClass("show_hint_zoom");
+    });
+    delegate(".zoomable", "mouseleave",  () => {
+        cursorshape.removeClass("show_hint_zoom");
+        cursorzoom.removeClass("show_hint_zoom");
+    });
+
+
+</script>

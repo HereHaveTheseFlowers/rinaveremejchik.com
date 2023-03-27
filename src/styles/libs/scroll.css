@@ -1,10 +1,9 @@
 .t-body {
     overflow: overlay !important;
 }
+
 body {
-  padding: 0;
-  margin: 0;
-  overflow: overlay;
+    overflow: overlay
 }
 
 ::-webkit-scrollbar {
@@ -16,6 +15,7 @@ body {
 ::-webkit-scrollbar {
     cursor:grab !important;
 }
+
 ::-webkit-scrollbar-thumb {
     cursor:grab !important;
     background-color: rgb(0 0 0 / 50%);

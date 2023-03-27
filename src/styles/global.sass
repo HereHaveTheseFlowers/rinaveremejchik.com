@@ -1,0 +1,63 @@
+@import './vars.sass'
+@import './fonts.css'
+@import './libs/scroll.css'
+@import './libs/hover-underlining.sass'
+@import './libs/bootstrap-reboot.min.css'
+@import './libs/bootstrap-grid.min.css'
+
+html
+  width: 100%
+  height: 100%
+  position: fixed
+  -webkit-font-smoothing: antialiased
+
+*
+  cursor: none !important
+  @media (max-width : 576px)
+    cursor: auto !important
+  ::selection
+    background: $color_none
+
+button:focus
+  border: 0
+  
+body
+  padding: 0
+  margin: 0
+  height: 100%
+  background: $color_bg
+  font-family: 'sweet_sans_prolight', sans
+
+main
+  height: 88%
+
+h1
+  margin-bottom: 0
+
+h2
+  margin-bottom: 0
+
+span::selection
+  background: $color_selection
+
+div::selection
+  background: $color_selection
+
+a
+  color: $color_text
+
+a:link
+  color: $color_text
+
+a:active
+  color: $color_text
+
+a:visited
+  color: $color_text
+
+a:hover
+  color: $color_text
+  text-decoration: none
+  
+.hidden
+  display: none !important

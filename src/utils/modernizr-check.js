@@ -1,3 +1,4 @@
+
 // check for svg support
 if (!Modernizr.inlinesvg) {
 	$("#zoom-svg").css('display', 'none');
