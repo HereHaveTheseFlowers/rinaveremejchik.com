@@ -3,14 +3,18 @@
   <a href="https://github.com/HereHaveTheseFlowers/rinaveremejchik.com/blob/main/README.ru.MD">Русский</a>
 </p>
 
-## ⚙️ About
-This is an elegant, minimal portfolio website for a professional high-end retoucher.
+## ⚙️ Case
+This website is an elegant, minimal portfolio page for a professional high-end retoucher.
 
-The main point of the site is to display high-quality images to the potential clients. Therefore, our biggest concern is loading time increased by the size of the pictures.  Lazyload library let's us show the low-quality versions of the images while the full image (That is also compressed) is being loaded.
+The main point of the site is to display high-quality images to potential clients. Our biggest concern is large loading time increased by the size of the pictures.  Lazyload JS library let's us show the low-quality versions of the images while the full image is being loaded. We are also using lossless compression on the images.
 
-There are some custom-written features like a reversed slider that starts on the pre-last slide, magnetic button that focuses user's attention on it's content (the email) and cursor replaced by a css shape.
+There are some custom-written features like a custom JS slider, magnetic email button that focuses user's attention on it's content and cursor replaced by a css shape that transforms according to the object it hovers on.
 
-SVG is being used throughout the project so user experience feels more smooth. If user's browser does not support SVG we automatically switch to PNG.
+Bootstrap helped with building the website according to the column layout grid.
+
+We moved this project from Gulp and using the Astro framework because it's faster performance & better user experience.
+
+SVG is being used throughout the project so that user experience feels more smooth. If user's browser does not support SVG we automatically switch to PNG.
 
 The website is also responsive and all of the features are mobile-friendly.
 
@@ -25,9 +29,10 @@ The website is deployed on https://rinaveremejchik.com
 </a>
 
 ## ⚙️ Stack
+ - Typescript
  - Astro
- - Lazyload
  - Sass
+ - Lazyload JS Lib
  - Gsap
  - Jquery
  - Bootstrap
