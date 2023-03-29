@@ -1202,9 +1202,11 @@ div.slider-next
             mainImage.onload = () => {
                 if(loadingimage) loadingimage.style.opacity = '0';
                 if(targetSrc.includes('landscape')) {
-                    mainImage.parentNode.className = "col-md-10 offset-md-1";
+                    mainImage.parentNode.classList.add("col-md-10 offset-md-1");
+                    mainImage.parentNode.classList.remove("col-md-8 offset-md-2");
                 } else {
-                    mainImage.parentNode.className = "col-md-8 offset-md-2";
+                    mainImage.parentNode.classList.add("col-md-8 offset-md-2");
+                    mainImage.parentNode.classList.remove("col-md-10 offset-md-1");
                 }
             };
             mainImage.src = `${targetSrc.replace('-icon', '-min')}`
@@ -1252,9 +1254,11 @@ div.slider-next
                 mainImage.onload = () => {
                     if(loadingimage) loadingimage.style.opacity = '0';
                     if(targetSrc.includes('landscape')) {
-                        mainImage.parentNode.className = "col-md-10 offset-md-1";
+                        mainImage.parentNode.classList.add("col-md-10 offset-md-1");
+                        mainImage.parentNode.classList.remove("col-md-8 offset-md-2");
                     } else {
-                        mainImage.parentNode.className = "col-md-8 offset-md-2";
+                        mainImage.parentNode.classList.add("col-md-8 offset-md-2");
+                        mainImage.parentNode.classList.remove("col-md-10 offset-md-1");
                     };
                 }
                 mainImage.src = `${targetSrc.replace('-icon', '-min')}`
@@ -1297,9 +1301,11 @@ div.slider-next
                 mainImage.onload = () => {
                     if(loadingimage) loadingimage.style.opacity = '0';
                     if(targetSrc.includes('landscape')) {
-                        mainImage.parentNode.className = "col-md-10 offset-md-1";
+                        mainImage.parentNode.classList.add("col-md-10 offset-md-1");
+                        mainImage.parentNode.classList.remove("col-md-8 offset-md-2");
                     } else {
-                        mainImage.parentNode.className = "col-md-8 offset-md-2";
+                        mainImage.parentNode.classList.add("col-md-8 offset-md-2");
+                        mainImage.parentNode.classList.remove("col-md-10 offset-md-1");
                     };
                 }
                 mainImage.src = `${targetSrc.replace('-icon', '-min')}`
