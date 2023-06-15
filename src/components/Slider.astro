@@ -965,6 +965,8 @@ div.slider-button
     opacity: 0.1
     transition: 0.5s opacity, 0.2s transform
     fill: $color_text
+    @media (max-width : 576px)
+      height: 64px
   svg.slider-prev
     opacity: 0
   svg.slider-next
@@ -999,7 +1001,7 @@ div.slider-next
     position: absolute
     pointer-events: auto
     @media (max-width : 576px)
-        bottom: 25px
+        bottom: 32px
 
 .campaign-button
     user-drag: none
