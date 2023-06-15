@@ -745,10 +745,13 @@ section.slider
       justify-content: center
       align-items: center
       @media (max-width : 576px)
-        height: 50%
+        height: 40%
         width: 100%
       img
         width: 58%
+        @media (max-width : 576px)
+         height: 80%
+         width: auto
     div.about-text
       width: 50%
       height: 100%
@@ -757,7 +760,7 @@ section.slider
       justify-content: center
       align-items: center
       @media (max-width : 576px)
-        height: 50%
+        height: 60%
         width: 100%
       div
         @media (max-width : 576px)
@@ -770,7 +773,7 @@ section.slider
       font-weight: 600
       font-size: 1.2vmax 
       @media (max-width : 576px)
-        font-size      : 1.4vmax 
+        font-size      : 1.8vmax 
   div.slide
     background: $color_bg
     position: absolute
@@ -826,8 +829,8 @@ section.slider
           justify-content: center
           height: 95%
           @media (max-width : 576px)
-            height: 76%
-            //margin-top: 1vh
+            height: 68%
+            margin-top: 4vh
       div.row-email
         margin-bottom: 20px
         @media (max-width : 576px)
@@ -843,7 +846,8 @@ section.slider
       width: 50%
       left: 0
       @media (max-width : 576px)
-        bottom: 15%
+        bottom: 18px
+        transform: scale(0.8)
         //width: 100%
   div.slide-picture
     height        : 100%
@@ -954,7 +958,7 @@ div.slider-button
   @media (max-width : 576px)
     width: 15%
     align-items: flex-end
-    padding-bottom: 5%
+    padding-bottom: 20px
   svg
     pointer-events: all
     display: block
@@ -995,7 +999,7 @@ div.slider-next
     position: absolute
     pointer-events: auto
     @media (max-width : 576px)
-        bottom: 98px
+        bottom: 25px
 
 .campaign-button
     user-drag: none
@@ -1012,10 +1016,12 @@ div.slider-next
         margin: 0 7px
 .campaign-right 
     @media (max-width : 576px)
-        margin: 0
+        display: none
+        //margin: 0
 .campaign-left 
     @media (max-width : 576px)
-        margin: 0
+        display: none
+        //margin: 0
     
 .campaign-button:hover
     transform: scale(1.2)
