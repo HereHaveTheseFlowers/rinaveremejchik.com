@@ -27,6 +27,7 @@ body
   height: 100%
   background: $color_bg
   font-family: 'sweet_sans_prolight', sans
+  -webkit-font-smoothing: antialiased
 
 main
   height: 88%
@@ -61,3 +62,7 @@ a:hover
   
 .hidden
   display: none !important
+
+.hide-mobile
+  @media (max-width : 576px)
+    display: none !important

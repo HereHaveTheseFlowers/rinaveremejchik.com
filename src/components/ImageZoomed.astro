@@ -141,10 +141,8 @@
 
 </style>
 
-
 <script>
     import $ from 'jquery';
-
     const cursorshape = $("#cursor-shape");
     const cursorzoom = $("#cursor-zoom");
     const cursortext = $("#cursor-text");
@@ -161,7 +159,7 @@
 
     let listofnotices = [];
 
-    $("img").contextmenu(function() {
+    function createNotice(){
         // deleting all the past created notices
         for(let notice of listofnotices) {
             notice.style.opacity = 0;
@@ -187,7 +185,41 @@
         ).data('hover', false);
         // not letting the browser open the context menu!
         return false;
+    };
+
+    $("img").contextmenu(createNotice);
+
+    $("img.image-zoomed").on("click", function (e) {
+        const isMobileDevice = $(window).width() <= 480;
+        if(isMobileDevice) {
+            // deleting all the past created notices
+            for(let notice of listofnotices) {
+                notice.style.opacity = 0;
+                notice.style.transform = 'scale(0.9)';
+                setTimeout(() =>  {
+                    notice.remove();
+                }, 500);
+            }
+            // creating a new notice based on image's alt property
+            const imagenotice = document.createElement(`div`);
+            listofnotices.push(imagenotice);
+            imagenotice.id = `image-notice`;
+            imagenotice.innerHTML = this.alt;
+            // calculating the position based on the cursor position
+            imagenotice.style.top = `calc(${currentMousePos.y}px )`;
+            imagenotice.style.left = `calc(${currentMousePos.x}px)`;
+            // adding notice to the body
+            document.body.appendChild(imagenotice);
+            // tracking are we hovering on the element so we can decide should we delete it when clicking
+            $(imagenotice).hover(
+                function() { $.data(this, 'hover', true); },
+                function() { $.data(this, 'hover', false); }
+            ).data('hover', false);
+            // not letting the browser open the context menu!
+            return false;
+        }
     });
+
     $('html').on('click', function () { 
         // deleting all the notices we're not hovering on right now
         for(let notice of listofnotices) {
@@ -367,10 +399,32 @@
         }
     })
 
+/*     // if you have multiple .draggable elements
+    // get all draggie elements
+    var draggableElems = document.querySelectorAll('.draggable');
+    // array of Draggabillies
+    var draggies = []
+    // init Draggabillies
+    for ( var i=0; i < draggableElems.length; i++ ) {
+        const draggableElem = draggableElems[i];
+        const draggie = new Draggable( draggableElem, {
+            // options...
+        });
+        draggies.push( draggie );
+    }
     
+    const $draggable = $('.draggable')
+    $draggable.on( 'dragMove', function(pointer) { 
+        Draggabilly.xTo(pointer.pageX);
+        Draggabilly.yTo(pointer.pageY - document.documentElement.scrollTop);
+        //if( Number($('#div-zoomed').css('top').match(/\d+/)[0]) < 0) $draggable.draggabilly('dragEnd')
+    })
+    $draggable.on( 'dragStart', () => { cursorshape.addClass("show_drag") })
+    $draggable.on( 'dragEnd', () => { cursorshape.removeClass("show_drag") }) */
+
     /// dragging the image
 
-   /*  const $draggable = $('.draggable').draggabilly({
+/*     const $draggable = $('.draggable').draggabilly({
         // options...
     });
     $draggable.on( 'dragMove', function(pointer) { 
@@ -381,5 +435,4 @@
     $draggable.on( 'dragStart', () => { cursorshape.addClass("show_drag") })
     $draggable.on( 'dragEnd', () => { cursorshape.removeClass("show_drag") })
  */
-
 </script>
